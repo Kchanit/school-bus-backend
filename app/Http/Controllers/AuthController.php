@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
@@ -24,5 +25,26 @@ class AuthController extends Controller
         $user->save();
 
         return ['message' => 'User created successfully', 'success' => true];
+    }
+
+    public function login(Request $request)
+    {
+        $credentials = $request->only('email', 'password');
+
+        if (Auth::attempt($credentials)) {
+            // Authentication passed
+            $user = Auth::user();
+
+            return [
+                'success' => true,
+                'message' => 'Login successful',
+                'user' => $user,
+            ];
+        }
+
+        return [
+            'success' => false,
+            'message' => 'Invalid credentials. Please check your email and password.',
+        ];
     }
 }
