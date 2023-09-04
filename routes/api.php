@@ -19,6 +19,9 @@ use Illuminate\Support\Facades\Route;
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/users', [UserController::class, 'index']);
+Route::middleware('auth:api')->group(function () {
+    Route::get('/user', [UserController::class, 'show']);
+});
 // Route::get('/users', 'UserController@index');
 // Route::post('/users', 'UserController@store');
 // Route::get('/users/{id}', 'UserController@show');

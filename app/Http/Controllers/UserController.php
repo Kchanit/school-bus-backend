@@ -32,9 +32,10 @@ class UserController extends Controller
     }
 
 
-    public function show($id)
+    public function show()
     {
-        // Logic to retrieve a specific user by ID
+        $user = auth()->user();
+        return response()->json(['user' => $user], 200);
     }
 
     public function update(Request $request, $id)

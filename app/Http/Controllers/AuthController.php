@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -34,12 +33,16 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             // Authentication passed
             $user = Auth::user();
+            if ($user instanceof \App\Models\User) {
+                $token = $user->createToken('MyApp')->accessToken;
+            }
 
-            return [
+            return response()->json([
                 'success' => true,
                 'message' => 'Login successful',
                 'user' => $user,
-            ];
+                'token' => $token,
+            ], 200);
         }
 
         return [
