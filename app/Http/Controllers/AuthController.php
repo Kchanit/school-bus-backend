@@ -34,7 +34,7 @@ class AuthController extends Controller
             // Authentication passed
             $user = Auth::user();
             if ($user instanceof \App\Models\User) {
-                $token = $user->createToken('MyApp')->accessToken;
+                $token = $user->createToken('authToken')->plainTextToken;
             }
 
             return response()->json([
