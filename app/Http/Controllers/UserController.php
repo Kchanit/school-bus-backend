@@ -40,7 +40,11 @@ class UserController extends Controller
 
     public function update(Request $request, $id)
     {
-        // Logic to update a user by ID
+        // Logic to update an user record goes here
+        $user = User::find($id);
+        $user->update($request->all());
+        $user->save();
+        return response()->json(['message' => 'User data updated successfully', 'success' => true], 200);
     }
 
     public function destroy($id)

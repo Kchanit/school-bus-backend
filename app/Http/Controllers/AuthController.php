@@ -36,7 +36,6 @@ class AuthController extends Controller
             if ($user instanceof \App\Models\User) {
                 $token = $user->createToken('authToken')->plainTextToken;
             }
-
             return response()->json([
                 'success' => true,
                 'message' => 'Login successful',
