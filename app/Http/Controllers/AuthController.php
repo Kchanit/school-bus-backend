@@ -24,6 +24,9 @@ class AuthController extends Controller
         $user->name = $request->get('name');
         $user->email = $request->get('email');
         $user->password = bcrypt($request->get('password')); // Hash the password
+        $user->address = $request->get('address');
+        $user->home_latitude = $request->get('home_latitude');
+        $user->home_longitude = $request->get('home_longitude');
         $user->save();
         return ['message' => 'User created successfully', 'success' => true, 'user' => $user];
     }
