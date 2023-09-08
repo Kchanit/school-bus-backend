@@ -16,14 +16,16 @@ class AuthController extends Controller
             'password' => 'required',
         ]);
 
+        if (User::where('email', $request->get('email'))->exists()) {
+            return ['message' => 'User already exists', 'success' => false];
+        }
+
         $user = new User();
         $user->name = $request->get('name');
         $user->email = $request->get('email');
         $user->password = bcrypt($request->get('password')); // Hash the password
-        // 'password' => bcrypt($data['password']), // Hash the password
         $user->save();
-
-        return ['message' => 'User created successfully', 'success' => true];
+        return ['message' => 'User created successfully', 'success' => true, 'user' => $user];
     }
 
     public function login(Request $request)

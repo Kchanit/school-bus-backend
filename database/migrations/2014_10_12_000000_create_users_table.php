@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('role')->default('PARENT');
+            $table->string('address')->nullable();
             $table->string('home_latitude')->nullable();
             $table->string('home_longitude')->nullable();
             $table->timestamp('email_verified_at')->nullable();

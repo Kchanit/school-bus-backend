@@ -22,8 +22,16 @@ class User extends Authenticatable
         'email',
         'password',
         'role',
+        'address',
         'home_latitude',
         'home_longitude',
+    ];
+
+    protected $attributes = [
+        'role' => 'PARENT',
+        'address' => null,
+        'home_latitude' => null,
+        'home_longitude' => null,
     ];
 
     /**
