@@ -25,6 +25,7 @@ class User extends Authenticatable
         'address',
         'home_latitude',
         'home_longitude',
+        'image_url'
     ];
 
     protected $attributes = [
@@ -32,6 +33,7 @@ class User extends Authenticatable
         'address' => null,
         'home_latitude' => null,
         'home_longitude' => null,
+        'image_url' => null,
     ];
 
     /**
