@@ -25,7 +25,8 @@ class User extends Authenticatable
         'address',
         'home_latitude',
         'home_longitude',
-        'image_url'
+        'image_url',
+        'fbtoken'
     ];
 
     protected $attributes = [
@@ -34,6 +35,7 @@ class User extends Authenticatable
         'home_latitude' => null,
         'home_longitude' => null,
         'image_url' => null,
+        'fbtoken' => null,
     ];
 
     /**

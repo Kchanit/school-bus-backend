@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redis;
 
 class UserController extends Controller
 {
@@ -42,7 +43,12 @@ class UserController extends Controller
     {
         // Logic to update an user record goes here
         $user = User::find($id);
-        $user->update($request->all());
+        // $user->update($request->all());
+        
+        // update fbtoken
+        if ($request->has('fbtoken')) {
+            $user->fbtoken = $request->input('fbtoken');
+        }
         $user->save();
         return response()->json(['message' => 'User data updated successfully', 'success' => true], 200);
     }

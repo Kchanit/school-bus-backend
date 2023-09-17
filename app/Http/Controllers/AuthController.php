@@ -28,6 +28,7 @@ class AuthController extends Controller
         $user->home_latitude = $request->get('home_latitude');
         $user->home_longitude = $request->get('home_longitude');
         $user->image_url = $request->get('image_url');
+        $user->fbtoken = null;
         $user->save();
         return ['message' => 'User created successfully', 'success' => true, 'user' => $user];
     }
