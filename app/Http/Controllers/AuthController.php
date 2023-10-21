@@ -2,57 +2,93 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Driver;
+use App\Models\Staff;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
+    // protected $userModel;
+
+
+
     public function register(Request $request)
     {
+        // $type = $request->input('role');
+        // if ($type == 'driver') {
+        //     $this->userModel = Driver::class;
+        // } else if ($type == 'staff') {
+        //     $this->userModel = Staff::class;
+        // } else
+        //     $this->userModel = User::class;
+
         $request->validate([
-            'name' => 'required|max:255',
             'email' => 'required|max:255',
             'password' => 'required',
         ]);
 
         if (User::where('email', $request->get('email'))->exists()) {
-            return ['message' => 'User already exists', 'success' => false];
+            return ['message' => 'Email already exists', 'success' => false];
+        }
+        if (Driver::where('email', $request->get('email'))->exists()) {
+            return ['message' => 'Email already exists', 'success' => false];
+        }
+
+        if (User::where('citizen_id', $request->get('citizen_id'))->exists()) {
+            return ['message' => 'Citizen ID already exists', 'success' => false];
         }
 
         $user = new User();
-        $user->name = $request->get('name');
+        $user->first_name = $request->get('first_name');
+        $user->last_name = $request->get('last_name');
+        $user->citizen_id = $request->get('citizen_id');
         $user->email = $request->get('email');
+        $user->role = $request->get('role');
         $user->password = bcrypt($request->get('password')); // Hash the password
-        $user->address = $request->get('address');
-        $user->home_latitude = $request->get('home_latitude');
-        $user->home_longitude = $request->get('home_longitude');
-        $user->image_url = $request->get('image_url');
         $user->save();
         return ['message' => 'User created successfully', 'success' => true, 'user' => $user];
     }
 
     public function login(Request $request)
     {
-        $credentials = $request->only('email', 'password');
+        // $type = $request->input('role');
+        // if ($type == 'driver') {
+        //     $this->userModel = Driver::class;
+        // } else if ($type == 'staff') {
+        //     $this->userModel = Staff::class;
+        // } else
+        //     $this->userModel = User::class;
 
-        if (Auth::attempt($credentials)) {
-            // Authentication passed
-            $user = Auth::user();
-            if ($user instanceof \App\Models\User) {
-                $token = $user->createToken('authToken')->plainTextToken;
-            }
+        // $user = $this->userModel::where('email', $request->get('email'))->first();
+        $user = User::where('email', $request->get('email'))->first();
+        if ($user === null) {
+            $user = Driver::where('email', $request->get('email'))->first();
+        }
+
+        if ($user === null) {
+            return response()->json([
+                'success' => false,
+                'message' => 'No account found with this email.',
+            ], 500);
+        }
+
+        if ($user != '[]' && Hash::check($request->get('password'), $user->password)) {
+            $token = $user->createToken('authToken')->plainTextToken;
             return response()->json([
                 'success' => true,
                 'message' => 'Login successful',
                 'user' => $user,
                 'token' => $token,
             ], 200);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Invalid credentials. Please check your email and password.',
+            ], 500);
         }
-
-        return [
-            'success' => false,
-            'message' => 'Invalid credentials. Please check your email and password.',
-        ];
     }
 }
