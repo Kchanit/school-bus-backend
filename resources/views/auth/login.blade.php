@@ -2,7 +2,7 @@
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
-    <form method="POST" action="{{ route('login') }}">
+    <form method="POST" action="{{ route('staff.login') }}">
         @csrf
         <div class="text-center mt-4">
             <h1 class="block text-2xl font-bold text-gray-800 dark:text-white">Sign in</h1>
@@ -14,8 +14,10 @@
             </p>
         </div>
 
+        <div>
+            Default
+        </div>
         <div class="mt-5">
-
 
             <!-- Email Address -->
             <div>
@@ -51,7 +53,9 @@
             </div>
 
             <button type="submit"
-                class="mt-4 mb-2 py-3 px-4 w-full inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-blue-500 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800">{{ __('Sign in') }}</button>
+                class="mt-4 mb-2 py-3 px-4 w-full inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-blue-500 text-black hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800">
+                Sign in
+            </button>
 
     </form>
 </x-guest-layout>

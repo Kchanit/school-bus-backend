@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\Staff;
 use App\Models\Student;
 use Illuminate\Database\Seeder;
 
@@ -19,6 +20,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             DriverSeeder::class,
             StudentSeeder::class,
+            StaffSeeder::class,
         ]);
     }
 }
