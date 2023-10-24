@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Route;
+use App\Models\Student;
 use Illuminate\Http\Request;
 
 class RouteController extends Controller
@@ -13,7 +14,10 @@ class RouteController extends Controller
      */
     public function index()
     {
-        //
+        // $routes = Route::all();
+        // $students = Student::where('id', 1)->get();
+        $students = Student::has('address')->get();
+        return view('routes.index', ['students' => $students]);
     }
 
     /**

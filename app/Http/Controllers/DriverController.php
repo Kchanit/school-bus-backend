@@ -30,7 +30,11 @@ class DriverController extends Controller
      */
     public function store(Request $request)
     {
-
+        $request->validate([
+            'firstName' => 'required',
+            'lastName' => 'required',
+            'email' => 'required|unique:drivers,email',
+        ]);
         $password = Random::generate(8);
 
         $driver = new Driver();

@@ -23,6 +23,7 @@ class StaffLoginController extends Controller
         if (auth()->guard('staff')->attempt(['email' => $request->email, 'password' => $request->password], $request->remember)) {
             $staff = auth()->guard('staff')->user();
             return view('staff.index', ['staff' => $staff]);
+            // return view('home', ['staff' => $staff]);
         }
 
         return redirect()->back()->withInput($request->only('email', 'remember'))->withErrors([

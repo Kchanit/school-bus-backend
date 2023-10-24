@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\RouteController;
 use App\Http\Controllers\Api\StaffController;
 use App\Http\Controllers\Auth\StaffLoginController;
 use App\Http\Controllers\DriverController;
@@ -21,13 +22,17 @@ Route::get('/', function () {
     if (auth()->guard('staff')->check()) {
         return redirect()->route('staff.index');
     }
-    return view('staff.showLoginForm');
+    return view('auth.login');
 });
 
 // Staff Login Routes
-Route::get('/login', [StaffLoginController::class, 'showLoginForm'])->name('staff.showLoginForm');
+// Route::get('/login', [StaffLoginController::class, 'showLoginForm'])->name('staff.showLoginForm');
+
+Route::get('/staff', [StaffController::class, 'index'])->name('staff.index');
 Route::post('/staff-login', [StaffLoginController::class, 'login'])->name('staff.login');
 Route::post('/logout', [StaffLoginController::class, 'logout'])->name('staff.logout');
+
+Route::resource('/routes', RouteController::class);
 
 Route::resource('/drivers', DriverController::class);
 

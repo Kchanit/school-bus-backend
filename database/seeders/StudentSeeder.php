@@ -43,7 +43,6 @@ class StudentSeeder extends Seeder
         $student->parent_citizen_id = '1234567890126';
         $student->save();
 
-
         Student::factory()
             ->count(10)
             ->create();
