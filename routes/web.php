@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\StaffController;
 use App\Http\Controllers\Auth\StaffLoginController;
+use App\Http\Controllers\DriverController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,7 +29,7 @@ Route::get('/login', [StaffLoginController::class, 'showLoginForm'])->name('staf
 Route::post('/staff-login', [StaffLoginController::class, 'login'])->name('staff.login');
 Route::post('/logout', [StaffLoginController::class, 'logout'])->name('staff.logout');
 
-
+Route::resource('/drivers', DriverController::class);
 
 Route::get('/dashboard', function () {
     return view('dashboard');

@@ -4,6 +4,9 @@
         {{ $staff->first_name }}
     </div>
     <button>
-        <a>Create Driver</a>
+        <a href="{{ route('drivers.create') }}">Create Driver</a>
+    </button>
+    <button>
+        <a href="{{ route('drivers.index') }}">All Drivers</a>
     </button>
 </h1>

@@ -19,5 +19,7 @@ class DriverSeeder extends Seeder
         $driver->email = 'johnny@gmail.com';
         $driver->password = bcrypt('1234');
         $driver->save();
+
+        Driver::factory()->count(10)->create();
     }
 }
