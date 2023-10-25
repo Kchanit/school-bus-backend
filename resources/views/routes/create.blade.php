@@ -1,107 +1,134 @@
 @extends('layouts.main')
 @section('content')
     <section>
-        Select students for bus number
         <h1>
             {{ $driver->getFullName() }}
         </h1>
         <h1>Joined Student</h1>
-        <!-- Table -->
-        <div class="min-h-[485px] overflow-auto max-h-[540px]">
-            <table class="table-auto overflow-scroll min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-                <thead class="bg-gray-50 dark:bg-slate-800 sticky top-0">
+
+        {{-- table --}}
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <h1 class="text-2xl font-bold mb-7">Select students for {{ $driver->getFullName() }}</h1>
+
+            <div id="events" class="box text-red-600">
+                Row selected - new information added at the top
+            </div>
+            <table id="myTable" class="display">
+                <thead>
                     <tr>
-                        <th scope="col" class="pl-6 lg:pl-3 xl:pl-0 pr-6 py-3 text-left">
-                            <div class="flex items-center gap-x-2">
-                                <span
-                                    class="pl-5 text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200">
-                                    No.
-                                </span>
-                            </div>
-                        </th>
-                        <th scope="col" class="pl-6 lg:pl-3 xl:pl-0 pr-6 py-3 text-left">
-                            <div class="flex items-center gap-x-2">
-                                <span
-                                    class="pl-5 text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200">
-                                    First Name
-                                </span>
-                            </div>
-                        </th>
-                        <th scope="col" class="px-6 py-3 text-left">
-                            <div class="flex items-center gap-x-2">
-                                <span
-                                    class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200">
-                                    Last Name
-                                </span>
-                            </div>
-                        </th>
-                        <th scope="col" class="px-6 py-3 text-left">
-                            <div class="flex items-center gap-x-2">
-                                <span
-                                    class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200">
-                                    District
-                                </span>
-                            </div>
-                        </th>
-                        <th scope="col" class="px-6 py-3 text-left">
-                            <div class="flex items-center gap-x-2">
-                                <span
-                                    class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200">
-                                    Road
-                                </span>
-                            </div>
-                        </th>
+                        <th>No.</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>District</th>
+                        <th>Road</th>
                     </tr>
                 </thead>
-                {{-- Table Body --}}
-                <tbody class="divide-gray-200 dark:divide-gray-700" id="list_item">
+                <Tbody>
                     @foreach ($students as $student)
-                        <tr class="w-full h-5 overflow-y-auto border">
+                        {{-- <tr class="w-full h-5 overflow-y-auto border"> --}}
+                        <tr>
                             {{-- no. --}}
-                            <td class="h-px w-px whitespace-nowrap">
-                                <div class="px-6 py-3">
-                                    <span class="block text-sm font-semibold text-gray-800 dark:text-gray-200">
+                            <td>
+                                <div>
+                                    <span>
                                         {{ $loop->iteration }}
                                     </span>
                                 </div>
                             </td>
                             {{-- First name --}}
-                            <td class="h-px w-px whitespace-nowrap">
-                                <div class="px-6 py-3">
-                                    <span class="block text-sm text-gray-500">
+                            <td>
+                                <div>
+                                    <span>
                                         {{ $student->first_name }}
                                     </span>
                                 </div>
                             </td>
                             {{-- Last name --}}
-                            <td class="h-px w-px whitespace-nowrap">
-                                <div class="px-6 py-3">
-                                    <span class="block text-sm text-gray-500">
+                            <td>
+                                <div>
+                                    <span>
                                         {{ $student->last_name }}
                                     </span>
                                 </div>
                             </td>
                             {{-- District --}}
-                            <td class="h-px w-px whitespace-nowrap">
-                                <div class="px-6 py-3">
-                                    <span class="block text-sm text-gray-500">
+                            <td>
+                                <div>
+                                    <span>
                                         {{ $student->address->district }}
                                     </span>
                                 </div>
                             </td>
                             {{-- Road --}}
-                            <td class="h-px w-px whitespace-nowrap">
-                                <div class="px-6 py-3">
-                                    <span class="block text-sm text-gray-500">
+                            <td>
+                                <div>
+                                    <span>
                                         {{ $student->address->road }}
                                     </span>
                                 </div>
                             </td>
                         </tr>
                     @endforeach
-                </tbody>
+                </Tbody>
             </table>
         </div>
-        <!-- End Table -->
+
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <link
+            href="https://cdn.datatables.net/v/dt/jszip-3.10.1/dt-1.13.6/b-2.4.2/b-colvis-2.4.2/b-html5-2.4.2/b-print-2.4.2/r-2.5.0/sl-1.7.0/datatables.min.css"
+            rel="stylesheet">
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+        <script
+            src="https://cdn.datatables.net/v/dt/jszip-3.10.1/dt-1.13.6/b-2.4.2/b-colvis-2.4.2/b-html5-2.4.2/b-print-2.4.2/r-2.5.0/sl-1.7.0/datatables.min.js">
+        </script>
+
+        <script>
+            $('#myTable tbody').on('click', 'tr', function() {
+                $(this).toggleClass('selected');
+            });
+
+            function message(message) {
+                let el = document.querySelector('#events');
+                let div = document.createElement('div');
+
+                div.textContent = message;
+                el.prepend(div);
+            }
+
+            $(document).ready(function() {
+                let table = $('#myTable').DataTable({
+                    dom: 'Bfrtip',
+                    buttons: [
+                        'copy', 'print',
+                        'selectAll',
+                        'selectNone',
+                        'showSelected',
+                        {
+                            text: 'Show Selected',
+                            action: function() {
+                                var rowdata = table.rows('.selected').data();
+                                var msg = '';
+                                for (var i = 0; i < rowdata.length; i++) {
+                                    msg += rowdata[i]
+                                }
+                                message('[#]' + msg);
+
+                                // var rowdata = table.rows({
+                                //     selected: true
+                                // }).data();
+                                // message(rowdata)
+
+                            }
+                        }
+                    ],
+                    select: {
+                        style: 'multi'
+                    }
+                });
+            });
+        </script>
+
     </section>
 @endsection
