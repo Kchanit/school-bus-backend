@@ -35,7 +35,7 @@ class StudentSeeder extends Seeder
 
         $address = Address::find(1);
         $address->students()->attach([1, 2]);
-        
+
 
         for ($i = 1; $i <= 100; $i++) {
             $student = new Student();
