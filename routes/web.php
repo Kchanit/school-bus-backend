@@ -2,9 +2,11 @@
 
 use App\Http\Controllers\Api\RouteController;
 use App\Http\Controllers\Api\StaffController;
+use App\Http\Controllers\Api\StudentController;
 use App\Http\Controllers\Auth\StaffLoginController;
 use App\Http\Controllers\DriverController;
 use App\Http\Controllers\ProfileController;
+use App\Models\Student;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,6 +29,9 @@ Route::get('/', function () {
 
 // Staff Login Routes
 // Route::get('/login', [StaffLoginController::class, 'showLoginForm'])->name('staff.showLoginForm');
+
+Route::get('/student', [StudentController::class, 'index'])->name('student.index');
+Route::get('delete/{id}', [StudentController::class, 'remove'])->name('student.remove');
 
 Route::get('/staff', [StaffController::class, 'index'])->name('staff.index');
 Route::post('/staff-login', [StaffLoginController::class, 'login'])->name('staff.login');

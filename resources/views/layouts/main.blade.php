@@ -12,12 +12,14 @@
 
 
 <body>
-    <main class="bg-white content w-full sm:px-6 md:px-8 lg:px-10 lg:py-4 min-h-screen">
-        @yield('content')
+    <main class="inline-flex bg-white gap-4 content w-full min-h-screen">
+        @include('layouts.sidebar')
+        <div class="py-3 pr-4 w-full">
+            @yield('content')
+        </div>
     </main>
     @yield('scripts')
 
-   
 </body>
 {{-- @include('layouts.subviews.footer') --}}
 
