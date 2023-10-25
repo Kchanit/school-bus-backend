@@ -10,8 +10,8 @@ class Address extends Model
     use HasFactory;
 
 
-    public function students()
+    public function student()
     {
-        return $this->belongsToMany(Student::class);
+        return $this->belongsTo(Student::class);
     }
 }

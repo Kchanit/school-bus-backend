@@ -47,25 +47,26 @@ class StudentController extends Controller
 
     public function enrollStudent(Request $request)
     {
-        $students_id = $request->get('students_id');
         $address = Address::find($request->get('address_id'));
-        $students = [];
         $parent = User::find($request->get('parent_id'));
-        foreach ($students_id as $student_id) {
-            $student = Student::find($student_id);
-            $students[] = $student;
-            $student->joined = true;
-            $student->parent_id = $request->get('parent_id');
-            $student->address_id = $request->get('address_id');
-            $student->save();
-        }
-        $parent->students()->attach($students_id);
-        $address->students()->attach($students_id);
+
+        $student = Student::find($request->get('student_id'));
+        $student->parent_id = $request->get('parent_id');
+        $student->address_id = $request->get('address_id');
+        $student->joined = true;
+        $student->save();
+
+        $parent->students()->attach($student->id);
+        $parent->save();
+        $address->student_id = $request->get('student_id');
+        $address->save();
+
+
 
         return response()->json([
             'message' => 'Student assigned successfully',
             'success' => true,
-            'students' => $students
+            'students' => $student
         ]);
     }
 

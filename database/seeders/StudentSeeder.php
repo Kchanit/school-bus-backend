@@ -21,21 +21,27 @@ class StudentSeeder extends Seeder
         $student->first_name = 'Jimmy';
         $student->last_name = 'Carter';
         $student->parent_citizen_id = '1234567890123';
-        $student->address_id = 1;
-        $student->joined = true;
+        // $student->address_id = 1;
+        // $student->joined = true;
         $student->save();
+
+        // $address = Address::find(1);
+        // $address->student_id = 1;
+        // $address->save();
 
         $student = new Student();
         $student->first_name = 'Jane';
         $student->last_name = 'Carter';
         $student->parent_citizen_id = '1234567890123';
-        $student->address_id = 1;
-        $student->joined = true;
+        // $student->address_id = 1;
+        // $student->joined = true;
         $student->save();
 
-        $address = Address::find(1);
-        $address->students()->attach([1, 2]);
-        
+        // $address = Address::find(2);
+        // $address->student_id = 2;
+        // $address->save();
+
+
 
         for ($i = 1; $i <= 100; $i++) {
             $student = new Student();
