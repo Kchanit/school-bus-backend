@@ -18,8 +18,10 @@ return new class extends Migration
             $table->string('status')->nullable();
             $table->string('parent_citizen_id');
             $table->string('image_url')->nullable();
+            $table->integer('order')->default(0);
             $table->foreignId('parent_id')->nullable()->constrained('users');
             $table->foreignId('address_id')->nullable()->constrained('addresses');
+            $table->foreignId('route_id')->nullable()->constrained('routes');
             $table->boolean('joined')->default(false);
             $table->timestamps();
         });

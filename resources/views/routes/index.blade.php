@@ -2,7 +2,7 @@
 @section('content')
     <section>
         This is routes index page.
-        <div class="bg-white shadow-md rounded-md overflow-hidden max-w-lg mx-auto mt-16">
+        {{-- <div class="bg-white shadow-md rounded-md overflow-hidden max-w-lg mx-auto mt-16">
             <div class="bg-gray-100 py-2 px-4">
                 <h2 class="text-xl font-semibold text-gray-800">Student List</h2>
             </div>
@@ -25,10 +25,10 @@
             </ul>
         </div>
 
-        <livewire:student-table />
+        <livewire:student-table /> --}}
 
 
 
-       
+
     </section>
 @endsection
