@@ -1,10 +1,10 @@
 @extends('layouts.main')
 @section('content')
     <section>
+        <h1>Joined Student</h1>
         <h1>
             {{ $driver->getFullName() }}
         </h1>
-        <h1>Joined Student</h1>
 
         {{-- table --}}
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -28,45 +28,15 @@
                         {{-- <tr class="w-full h-5 overflow-y-auto border"> --}}
                         <tr>
                             {{-- no. --}}
-                            <td>
-                                <div>
-                                    <span>
-                                        {{ $loop->iteration }}
-                                    </span>
-                                </div>
-                            </td>
+                            <td>{{ $loop->iteration }}</td>
                             {{-- First name --}}
-                            <td>
-                                <div>
-                                    <span>
-                                        {{ $student->first_name }}
-                                    </span>
-                                </div>
-                            </td>
+                            <td>{{ $student->first_name }}</td>
                             {{-- Last name --}}
-                            <td>
-                                <div>
-                                    <span>
-                                        {{ $student->last_name }}
-                                    </span>
-                                </div>
-                            </td>
+                            <td>{{ $student->last_name }}</td>
                             {{-- District --}}
-                            <td>
-                                <div>
-                                    <span>
-                                        {{ $student->address->district }}
-                                    </span>
-                                </div>
-                            </td>
+                            <td>{{ $student->address->district }}</td>
                             {{-- Road --}}
-                            <td>
-                                <div>
-                                    <span>
-                                        {{ $student->address->road }}
-                                    </span>
-                                </div>
-                            </td>
+                            <td>{{ $student->address->road }}</td>
                         </tr>
                     @endforeach
                 </Tbody>
@@ -111,7 +81,7 @@
                                 var rowdata = table.rows('.selected').data();
                                 var msg = '';
                                 for (var i = 0; i < rowdata.length; i++) {
-                                    msg += rowdata[i]
+                                    msg += rowdata[i] + ","
                                 }
                                 message('[#]' + msg);
 

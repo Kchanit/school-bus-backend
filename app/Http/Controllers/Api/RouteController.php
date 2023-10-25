@@ -42,9 +42,10 @@ class RouteController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Route $route)
+    public function show(Driver $driver)
     {
-        //
+        $students = Student::has('address')->get();
+        return view('routes.show', ['driver' => $driver, 'students' => $students]);
     }
 
     /**

@@ -36,6 +36,7 @@ Route::resource('/routes', RouteController::class);
 
 Route::resource('/drivers', DriverController::class);
 Route::get('/routes/create/{driver}', [RouteController::class, 'create'])->name('routes.create');
+Route::get('/routes/show/{driver}', [RouteController::class, 'show'])->name('routes.show');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
