@@ -14,13 +14,11 @@ class UserSeeder extends Seeder
     public function run(): void
     {
         $user = new User();
-        $user->name = 'user01';
-        $user->email = "user01@gmail.com";
+        $user->first_name = "John";
+        $user->last_name = "Doe";
+        $user->email = "john01@gmail.com";
+        $user->citizen_id = "1234567890111";
         $user->password = bcrypt('1234');
-        $user->role = 'PARENT';
-        $user->address = 'Jl. Raya Bogor, Cibinong, Bogor, Jawa Barat, Indonesia';
-        $user->home_latitude = -6.481710;
-        $user->home_longitude = 106.854370;
         $user->save();
     }
 }

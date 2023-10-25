@@ -18,25 +18,14 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'first_name',
+        'last_name',
         'email',
+        'citizen_id',
         'password',
         'role',
-        'address',
-        'home_latitude',
-        'home_longitude',
-        'image_url',
-        'fbtoken'
     ];
 
-    protected $attributes = [
-        'role' => 'PARENT',
-        'address' => null,
-        'home_latitude' => null,
-        'home_longitude' => null,
-        'image_url' => null,
-        'fbtoken' => null,
-    ];
 
     /**
      * The attributes that should be hidden for serialization.
@@ -57,4 +46,9 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function students()
+    {
+        return $this->belongsToMany(Student::class);
+    }
 }
