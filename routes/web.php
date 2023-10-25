@@ -35,6 +35,7 @@ Route::post('/logout', [StaffLoginController::class, 'logout'])->name('staff.log
 Route::resource('/routes', RouteController::class);
 
 Route::resource('/drivers', DriverController::class);
+Route::get('/routes/create/{driver}', [RouteController::class, 'create'])->name('routes.create');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

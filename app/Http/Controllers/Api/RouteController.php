@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Driver;
 use App\Models\Route;
 use App\Models\Student;
 use Illuminate\Http\Request;
@@ -15,17 +16,19 @@ class RouteController extends Controller
     public function index()
     {
         // $routes = Route::all();
-        // $students = Student::where('id', 1)->get();
+        $drivers = Driver::all();
         $students = Student::has('address')->get();
-        return view('routes.index', ['students' => $students]);
+
+        return view('routes.index', ['drivers' => $drivers, 'students' => $students]);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Driver $driver)
     {
-        //
+        $students = Student::has('address')->get();
+        return view('routes.create', ['driver' => $driver, 'students' => $students]);
     }
 
     /**
