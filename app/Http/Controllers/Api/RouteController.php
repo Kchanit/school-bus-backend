@@ -36,7 +36,29 @@ class RouteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $driver_id = $request->get('driver_id');
+        $students_id = $request->get('students_id');
+
+        // Create a new route
+        $route = new Route();
+        $route->driver_id = $driver_id;
+        $route->save();
+
+        // Associate students with the route
+        foreach ($students_id as $index => $student_id) {
+            $student = Student::find($student_id);
+
+            // Set the route_id on the student
+            $student->route_id = $route->id;
+            $student->order = $index + 1;
+            $student->save();
+        }
+
+        // Redirect to the route's show page
+        return response()->json([
+            'message' => 'Route created successfully',
+            'route' => $route,
+        ]);
     }
 
     /**

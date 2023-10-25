@@ -15,4 +15,9 @@ class Driver extends Authenticatable
     {
         return $this->first_name . ' ' . $this->last_name;
     }
+
+    public function route()
+    {
+        return $this->hasOne(Route::class);
+    }
 }

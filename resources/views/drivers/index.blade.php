@@ -8,7 +8,7 @@
             </div>
             <ul class="divide-y divide-gray-200">
                 @foreach ($drivers as $driver)
-                    <a href="{{ route('routes.show', ['driver' => $driver]) }}">
+                    <a href="{{ route('routes.create', ['driver' => $driver]) }}">
                         <li class="flex items-center py-4 px-6">
                             <span class="text-gray-700 text-lg font-medium mr-4">{{ $loop->iteration . '.' }}</span>
                             <img class="w-12 h-12 rounded-full object-cover mr-4"
