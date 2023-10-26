@@ -8,6 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>School Bus</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.css" rel="stylesheet" />
 </head>
 
 
@@ -19,7 +20,7 @@
         </div>
     </main>
     @yield('scripts')
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>
 </body>
 {{-- @include('layouts.subviews.footer') --}}
 

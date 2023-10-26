@@ -7,6 +7,7 @@ use App\Models\Address;
 use App\Models\Student;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class StudentController extends Controller
 {
@@ -15,7 +16,8 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $students = Student::has('address')->get();
+        // $students = Student::has('address')->get();
+        $students = Student::has('address')->paginate(10);
         return view('student.index', ['students' => $students]);
     }
 

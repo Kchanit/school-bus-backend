@@ -50,6 +50,12 @@
 
         @include('common.script')
 
+        {{-- <script>
+            $(document).ready(function() {
+                $('#myTable').DataTable();
+            })
+        </script> --}}
+
         <script>
             $('#myTable tbody').on('click', 'tr', function() {
                 $(this).toggleClass('selected');
@@ -86,7 +92,6 @@
                                     selectedData.push(rowdata[i][0])
                                 }
                                 console.log(selectedData);
-
 
 
                                 $.ajax({

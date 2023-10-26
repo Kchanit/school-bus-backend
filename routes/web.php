@@ -31,18 +31,24 @@ Route::get('/', function () {
 // Route::get('/login', [StaffLoginController::class, 'showLoginForm'])->name('staff.showLoginForm');
 
 Route::get('/student', [StudentController::class, 'index'])->name('student.index');
-Route::get('delete/{id}', [StudentController::class, 'remove'])->name('student.remove');
+Route::get('delete/student/{id}', [StudentController::class, 'remove'])->name('student.remove');
 
 Route::get('/staff', [StaffController::class, 'index'])->name('staff.index');
 Route::post('/staff-login', [StaffLoginController::class, 'login'])->name('staff.login');
 Route::post('/logout', [StaffLoginController::class, 'logout'])->name('staff.logout');
 
-Route::resource('/routes', RouteController::class);
 
 
+Route::get('/drivers/list', [DriverController::class, 'list'])->name('drivers.list');
+Route::get('delete/driver/{id}', [DriverController::class, 'remove'])->name('driver.remove');
+Route::get('edit/driver/{id}', [DriverController::class, 'edit'])->name('driver.edit');
 Route::resource('/drivers', DriverController::class);
+
+
+Route::resource('/routes', RouteController::class);
 Route::get('/routes/create/{driver}', [RouteController::class, 'create'])->name('routes.create');
 Route::get('/routes/show/{driver}', [RouteController::class, 'show'])->name('routes.show');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
