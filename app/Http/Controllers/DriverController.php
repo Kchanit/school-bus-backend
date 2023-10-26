@@ -13,7 +13,7 @@ class DriverController extends Controller
      */
     public function index()
     {
-        $drivers = Driver::all();
+        $drivers = Driver::with('route')->paginate(6);
         return view('drivers.index', ['drivers' => $drivers]);
     }
 
@@ -47,6 +47,11 @@ class DriverController extends Controller
         return redirect()->route('drivers.index');
     }
 
+    public function list()
+    {
+        $drivers = Driver::with('route')->paginate(10);
+        return view('drivers.list', ['drivers' => $drivers]);
+    }
 
     /**
      * Display the specified resource.
@@ -59,9 +64,10 @@ class DriverController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Driver $driver)
+    public function edit($id)
     {
-        //
+        $driver = Driver::find($id);
+        return view('drivers.edit', compact('driver'));
     }
 
     /**
@@ -69,14 +75,26 @@ class DriverController extends Controller
      */
     public function update(Request $request, Driver $driver)
     {
-        //
+        $request->validate([
+            'firstName' => 'required',
+            'lastName' => 'required',
+        ]);
+
+        // $driver = Driver::find($request->id);
+        $driver->first_name = $request->get('firstName');
+        $driver->last_name = $request->get('lastName');
+        $driver->save();
+
+        return redirect()->route('drivers.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Driver $driver)
+    public function remove($id)
     {
-        //
+        $driver = Driver::find($id);
+        $driver->delete();
+        return back();
     }
 }

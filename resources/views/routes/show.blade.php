@@ -5,9 +5,9 @@
     <h1>
         {{ $driver->getFullName() }}
     </h1>
-    <a href="{{ route('routes.create', ['driver' => $driver]) }}" type="button"
+    {{-- <a href="{{ route('routes.create', ['driver' => $driver]) }}" type="button"
         class="m-6 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-6  focus:outline-none">Add
-        Student</a>
+        Student</a> --}}
 
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <form method="POST" id="myForm"

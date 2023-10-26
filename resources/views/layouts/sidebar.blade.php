@@ -27,7 +27,7 @@
 
                 <ul class="space-y-1 border-t border-gray-100 pt-4">
                     <li>
-                        <a href="{{ route('drivers.create') }}"
+                        <a href="{{ route('drivers.list') }}"
                             class="group relative flex justify-center rounded px-2 py-1.5 text-gray-500 hover:bg-gray-50 hover:text-gray-700">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 opacity-75" fill="none"
                                 viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
