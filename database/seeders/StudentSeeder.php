@@ -25,6 +25,10 @@ class StudentSeeder extends Seeder
         $student->joined = true;
         $student->save();
 
+        // $address = Address::find(1);
+        // $address->student_id = 1;
+        // $address->save();
+
         $student = new Student();
         $student->first_name = 'Jane';
         $student->last_name = 'Carter';
@@ -33,9 +37,11 @@ class StudentSeeder extends Seeder
         $student->joined = true;
         $student->save();
 
-        $address = Address::find(1);
-        $address->students()->attach([1, 2]);
-        
+        // $address = Address::find(2);
+        // $address->student_id = 2;
+        // $address->save();
+
+
 
         for ($i = 1; $i <= 100; $i++) {
             $student = new Student();
