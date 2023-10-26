@@ -11,53 +11,6 @@ use Illuminate\Routing\Controller as BaseController;
 class ApiNotificationController extends BaseController
 {
     use AuthorizesRequests, ValidatesRequests;
-
-//     public function sendNotification(Request $request)
-// {
-//     $fbtoken = User::where('fbtoken', $request->fbtoken)->pluck('fbtoken')->all();
-
-//     if (count($fbtoken) > 0) {
-//         $SERVER_API_KEY = 'AAAAaRqmZt8:APA91bGi-jKCAdkxXJPK-6d9OW7X0jU4KPeL1RhrHfk8RtPrOb8QsF7sWKsmukil-mZN4_wUaY55M3Q7q-K6kwLFFhT9X8C1aMLBUmM9IFPL1rPk5ivswYEKwcsb1fd9K1I_tdIA4ufn';
-
-//         $data = [
-//             "to" => $fbtoken,
-//             "notification" => [
-//                 "title" => $request->title,
-//                 "body" => $request->body,
-//                 "content_available" => true,
-//                 "priority" => "high",
-//             ]
-//         ];
-//         $dataString = json_encode($data);
-
-//         $headers = [
-//             'Authorization: key=' . $SERVER_API_KEY,
-//             'Content-Type: application/json',
-//         ];
-
-//         $ch = curl_init();
-
-//         curl_setopt($ch, CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send');
-//         curl_setopt($ch, CURLOPT_POST, true);
-//         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-//         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-//         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-//         curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
-
-//         // $response = curl_exec($ch);
-//         $response = curl_exec($ch);
-//         curl_close($ch);
-//         echo $response;
-//         echo "fbtoken: $fbtoken, title: $request->title, body: $request->body";
-
-//         // dd($response);
-//     } else {
-//         // Handle the case when the specific token is not found
-//         return response()->json(['error' => 'Token not found.'], 404);
-//     }
-// }
-
-
     public function sendNotification(Request $request)
     {
         $SERVER_API_KEY = 'AAAAaRqmZt8:APA91bGi-jKCAdkxXJPK-6d9OW7X0jU4KPeL1RhrHfk8RtPrOb8QsF7sWKsmukil-mZN4_wUaY55M3Q7q-K6kwLFFhT9X8C1aMLBUmM9IFPL1rPk5ivswYEKwcsb1fd9K1I_tdIA4ufn';
