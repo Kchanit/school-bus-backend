@@ -44,7 +44,7 @@
                 <div class="flex justify-end ">
                     <button class="mt-8">
                         <div type="submit"
-                            class="inline-block rounded bg-blue-600/90 px-4 py-2 text-xs font-medium text-white hover:bg-blue-700">
+                            class="inline-block rounded bg-blue-600 px-4 py-2 text-xs font-medium text-white hover:bg-blue-700">
                             Confirm
                         </div>
                     </button>
