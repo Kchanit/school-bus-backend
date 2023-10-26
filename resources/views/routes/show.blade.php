@@ -15,7 +15,15 @@
             @csrf
             @method('PUT')
             <h1 class="text-2xl font-bold mb-7">Reorder route for {{ $driver->getFullName() }}</h1>
-            <button type="button" id="saveButton" class="btn btn-primary bg-green-500 p-2 rounded-lg">Save</button>
+            <button type="button" id="saveButton">
+                <a href=""
+                    class="inline-block rounded bg-green-600/90 px-4 py-2 text-xs font-medium text-white hover:bg-green-700">
+                    Save
+                </a>
+            </button>
+            <a href="{{ route('routes.create', ['driver' => $driver]) }}"
+                class="inline-block rounded bg-blue-600/90 px-4 py-2 text-xs font-medium text-white hover:bg-blue-700">Add
+                Student</a>
             <input type="hidden" name="students_id" id="selectedData" value="">
             {{-- table --}}
             <table id="showTable" class="display">
@@ -27,6 +35,7 @@
                         <th>Last Name</th>
                         <th>District</th>
                         <th>Road</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <Tbody>
@@ -44,6 +53,10 @@
                             <td>{{ $student->address->district }}</td>
                             {{-- Road --}}
                             <td>{{ $student->address->road }}</td>
+                            <td>
+                                <a href="{{ route('routes.remove-student', ['student' => $student]) }}" type="button"
+                                    class="btn btn-primary bg-red-500 p-2 rounded-lg">Remove</a>
+                            </td>
                         </tr>
                     @endforeach
                 </Tbody>

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->string('image_url')->nullable();
+            $table->string('role')->default('DRIVER');
             $table->timestamps();
         });
     }

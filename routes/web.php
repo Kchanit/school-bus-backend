@@ -21,10 +21,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    if (auth()->guard('staff')->check()) {
-        return redirect()->route('staff.index');
-    }
-    return view('auth.login');
+    // if (auth()->guard('staff')->check()) {
+    //     return redirect()->route('staff.index');
+    // }
+    return view('staff.index');
 });
 
 // Staff Login Routes
@@ -45,20 +45,26 @@ Route::get('edit/driver/{id}', [DriverController::class, 'edit'])->name('driver.
 Route::resource('/drivers', DriverController::class);
 
 
-Route::resource('/routes', RouteController::class);
+// Route::get('/routes/add-student/{driver}', [RouteController::class, 'addStudent'])->name('routes.add-student');
 Route::get('/routes/create/{driver}', [RouteController::class, 'create'])->name('routes.create');
 Route::get('/routes/show/{driver}', [RouteController::class, 'show'])->name('routes.show');
+Route::get('/routes/manage', [RouteController::class, 'manage'])->name('routes.manage');
+Route::get('/routes/index', [RouteController::class, 'index'])->name('routes.index');
+Route::post('routes/store', [RouteController::class, 'store'])->name('routes.store');
+Route::post('routes/update', [RouteController::class, 'update'])->name('routes.update');
+Route::get('routes/remove-student/{student}', [RouteController::class, 'removeStudent'])->name('routes.remove-student');
+// Route::resource('/routes', RouteController::class);
 
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/home', [StaffController::class, 'index'])->name('staff.index');
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+// Route::middleware('auth')->group(function () {
+//     Route::get('/home', [StaffController::class, 'index'])->name('staff.index');
+//     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+//     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+//     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+// });
 
 require __DIR__ . '/auth.php';
