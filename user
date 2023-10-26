@@ -1,0 +1,17 @@
+[90m= [39m[34;4mApp\Models\User[39;24m {#6655
+    [34mid[39m: [35m1[39m,
+    [34mname[39m: "[32muser01[39m",
+    [34memail[39m: "[32muser01@gmail.com[39m",
+    [34mrole[39m: "[32mPARENT[39m",
+    [34maddress[39m: "[32mJl. Raya Bogor, Cibinong, Bogor, Jawa Barat, Indonesia[39m",
+    [34mhome_latitude[39m: "[32m-6.48171[39m",
+    [34mhome_longitude[39m: "[32m106.85437[39m",
+    [34mimage_url[39m: [36mnull[39m,
+    [34memail_verified_at[39m: [36mnull[39m,
+    #[33mpassword[39m: "[32m$2y$10$XAhW5yH3hyRLcLi3gANt1.F5zcGOaDGHJh02pZeW0cUzh3g/rxyoG[39m",
+    [34mfbtoken[39m: "[32mcvk_Xju4Y_qYkLxDs1-wHg:APA91bEFnqr6BfXOjBQo8KTN3Gc9GT8AB4G8tQC5K9yE6WFfyITE9fEfR7eSL5FnQ_QnuotCZE9jjjkrnff4csnpWoMCBgLtb35tbYrN756VCJHPZxe-W6EbbG8_SUvYR7OauwTXFcOj[39m",
+    #[33mremember_token[39m: [36mnull[39m,
+    [34mcreated_at[39m: "[32m2023-10-26 03:21:04[39m",
+    [34mupdated_at[39m: "[32m2023-10-26 20:15:24[39m",
+  }
+

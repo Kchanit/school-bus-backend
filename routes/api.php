@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ApiNotificationController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,7 +20,11 @@ use Illuminate\Support\Facades\Route;
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/users', [UserController::class, 'index']);
-Route::put('/users/{id}', [UserController::class, 'update']);
+Route::put('/users/{id}', [UserController::class, 'updateFbToken']);
+
+Route::post('/sendNotification/{fbtoken}/{title}/{body}', [ApiNotificationController::class, 'SendNotification']);
+// Route::post('/send-notification', [ApiNotificationController::class, 'sendNotification']);
+
 Route::middleware('auth:api')->group(function () {
     Route::get('/user', [UserController::class, 'show']);
 });
