@@ -54,6 +54,8 @@ class RouteController extends Controller
         $students = [];
         $driver_id = $request->input('driver_id');
         $driver = Driver::find($driver_id);
+
+        $lastStudent = null;
         // If $driver is not provided, create a new route
         if (!$driver->route) {
             // Create a new route
@@ -103,6 +105,17 @@ class RouteController extends Controller
     {
     }
 
+    public function getMyRoute(Request $request)
+    {
+        $driver_id = $request->get('driver_id');
+        $driver = Driver::find($driver_id);
+        $route = Route::where('driver_id', $driver->id)->first();
+        $students = $route->students;
+        return response()->json([
+            'success' => true,
+            'students' => $students
+        ]);
+    }
     /**
      * Update the specified resource in storage.
      */
