@@ -30,6 +30,8 @@ Route::post('/students/get-my-students', [StudentController::class, 'getMyStuden
 Route::post('/students/enroll', [StudentController::class, 'enrollStudent']);
 Route::post('/students/change-bus-status', [StudentController::class, 'changeBusStatus']);
 Route::post('/routes/get-my-route', [RouteController::class, 'getMyRoute']);
+Route::post('/routes/update-order', [RouteController::class, 'updateOrder']);
+
 Route::apiResource('/students', StudentController::class);
 Route::apiResource('/addresses', AddressController::class);
 Route::middleware('auth:api')->group(function () {

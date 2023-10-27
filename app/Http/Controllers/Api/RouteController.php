@@ -7,6 +7,7 @@ use App\Models\Driver;
 use App\Models\Route;
 use App\Models\Student;
 use Illuminate\Http\Request;
+use PDO;
 
 class RouteController extends Controller
 {
@@ -42,6 +43,20 @@ class RouteController extends Controller
         $students = Student::has('address')->doesntHave('route')->get();
         $driver = Driver::find($driver->id);
         return view('routes.add', ['driver' => $driver, 'students' => $students]);
+    }
+
+    public function updateOrder(Request $request)
+    {
+        $students = $request->get('students');
+        foreach ($students as $index => $student) {
+            $student = Student::find($student['id']);
+            $student->order = $index + 1;
+            $student->save();
+        }
+        return response()->json([
+            'success' => true,
+            'message' => 'Order updated successfully'
+        ]);
     }
 
     /**
@@ -110,7 +125,7 @@ class RouteController extends Controller
         $driver_id = $request->get('driver_id');
         $driver = Driver::find($driver_id);
         $route = Route::where('driver_id', $driver->id)->first();
-        $students = $route->students;
+        $students = $route->students->sortBy('order');
         return response()->json([
             'success' => true,
             'students' => $students
