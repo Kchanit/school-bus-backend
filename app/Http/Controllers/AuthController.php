@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Driver;
 use App\Models\Staff;
+use App\Models\Student;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
@@ -32,15 +33,15 @@ class AuthController extends Controller
         ]);
 
         if (User::where('email', $request->get('email'))->exists()) {
-            return ['message' => 'Email already exists', 'success' => false];
+            return ['email' => 'Email already exists', 'success' => false];
         }
         if (Driver::where('email', $request->get('email'))->exists()) {
-            return ['message' => 'Email already exists', 'success' => false];
+            return ['email' => 'Email already exists', 'success' => false];
+        }
+        if (User::where('citizen_id', $request->get('citizen_id'))->exists()) {
+            return ['citizen_id' => 'Citizen ID already exists', 'success' => false];
         }
 
-        if (User::where('citizen_id', $request->get('citizen_id'))->exists()) {
-            return ['message' => 'Citizen ID already exists', 'success' => false];
-        }
 
         $user = new User();
         $user->first_name = $request->get('first_name');
@@ -51,6 +52,41 @@ class AuthController extends Controller
         $user->password = bcrypt($request->get('password')); // Hash the password
         $user->save();
         return ['message' => 'User created successfully', 'success' => true, 'user' => $user];
+    }
+
+    public function validateRegister(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|max:255',
+            'password' => 'required',
+            'citizen_id' => 'required',
+        ]);
+
+        $validationErrors = [];
+
+        if (User::where('email', $request->get('email'))->exists()) {
+            $validationErrors['email'] = 'Email already exists';
+        }
+
+        if (Driver::where('email', $request->get('email'))->exists()) {
+            $validationErrors['email'] = 'Email already exists';
+        }
+
+        if (User::where('citizen_id', $request->get('citizen_id'))->exists()) {
+            $validationErrors['citizen_id'] = 'Citizen ID already exists';
+        }
+        if (!Student::where('parent_citizen_id', $request->get('citizen_id'))->exists()) {
+            $validationErrors['citizen_id'] = 'No Student found with this Citizen ID';
+        }
+
+        if (!empty($validationErrors)) {
+            return response()->json([
+                'success' => false,
+                'errors' => $validationErrors,
+            ]);
+        }
+
+        return ['message' => 'User created successfully', 'success' => true];
     }
 
     public function login(Request $request)
@@ -91,6 +127,4 @@ class AuthController extends Controller
             ], 500);
         }
     }
-
-    
 }
