@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AddressController;
+use App\Http\Controllers\Api\RouteController;
 use App\Http\Controllers\Api\StudentController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
@@ -27,8 +28,14 @@ Route::post('/sendNotification/{fbtoken}/{title}/{body}', [ApiNotificationContro
 // Route::post('/send-notification', [ApiNotificationController::class, 'sendNotification']);
 // Route::put('/users/{id}', [UserController::class, 'update']);
 Route::get('/user', [UserController::class, 'show']);
+
 Route::post('/students/my-students', [StudentController::class, 'myStudent']);
+Route::post('/students/get-my-students', [StudentController::class, 'getMyStudents']);
 Route::post('/students/enroll', [StudentController::class, 'enrollStudent']);
+Route::post('/students/change-bus-status', [StudentController::class, 'changeBusStatus']);
+Route::post('/routes/get-my-route', [RouteController::class, 'getMyRoute']);
+Route::post('/routes/update-order', [RouteController::class, 'updateOrder']);
+
 Route::apiResource('/students', StudentController::class);
 Route::apiResource('/addresses', AddressController::class);
 Route::middleware('auth:api')->group(function () {

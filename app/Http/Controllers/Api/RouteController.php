@@ -7,6 +7,7 @@ use App\Models\Driver;
 use App\Models\Route;
 use App\Models\Student;
 use Illuminate\Http\Request;
+use PDO;
 
 class RouteController extends Controller
 {
@@ -44,6 +45,20 @@ class RouteController extends Controller
         return view('routes.add', ['driver' => $driver, 'students' => $students]);
     }
 
+    public function updateOrder(Request $request)
+    {
+        $students = $request->get('students');
+        foreach ($students as $index => $student) {
+            $student = Student::find($student['id']);
+            $student->order = $index + 1;
+            $student->save();
+        }
+        return response()->json([
+            'success' => true,
+            'message' => 'Order updated successfully'
+        ]);
+    }
+
     /**
      * Store a newly created resource in storage.
      */
@@ -54,6 +69,8 @@ class RouteController extends Controller
         $students = [];
         $driver_id = $request->input('driver_id');
         $driver = Driver::find($driver_id);
+
+        $lastStudent = null;
         // If $driver is not provided, create a new route
         if (!$driver->route) {
             // Create a new route
@@ -103,6 +120,17 @@ class RouteController extends Controller
     {
     }
 
+    public function getMyRoute(Request $request)
+    {
+        $driver_id = $request->get('driver_id');
+        $driver = Driver::find($driver_id);
+        $route = Route::where('driver_id', $driver->id)->first();
+        $students = $route->students->sortBy('order');
+        return response()->json([
+            'success' => true,
+            'students' => $students
+        ]);
+    }
     /**
      * Update the specified resource in storage.
      */
