@@ -23,8 +23,12 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::get('/users', [UserController::class, 'index']);
 Route::put('/users/{id}', [UserController::class, 'update']);
 Route::get('/user', [UserController::class, 'show']);
+
 Route::post('/students/my-students', [StudentController::class, 'myStudent']);
+Route::post('/students/get-my-students', [StudentController::class, 'getMyStudents']);
 Route::post('/students/enroll', [StudentController::class, 'enrollStudent']);
+Route::post('/students/change-bus-status', [StudentController::class, 'changeBusStatus']);
+
 Route::apiResource('/students', StudentController::class);
 Route::apiResource('/addresses', AddressController::class);
 Route::middleware('auth:api')->group(function () {

@@ -23,6 +23,7 @@ return new class extends Migration
             $table->foreignId('address_id')->nullable()->constrained('addresses');
             $table->foreignId('route_id')->nullable()->constrained('routes');
             $table->boolean('joined')->default(false);
+            $table->boolean('is_taking_bus')->default(true);
             $table->timestamps();
         });
     }

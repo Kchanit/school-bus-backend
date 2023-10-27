@@ -85,6 +85,29 @@ class StudentController extends Controller
             'students' => $students
         ]);
     }
+
+    public function getMyStudents(Request $request)
+    {
+        $citizen_id = $request->get('citizen_id');
+        $students = Student::where('parent_citizen_id', $citizen_id)->where('joined', true)->get();
+        return response()->json([
+            'success' => true,
+            'students' => $students
+        ]);
+    }
+
+    public function changeBusStatus(Request $request)
+    {
+        $student = Student::find($request->get('student_id'));
+        $student->is_taking_bus = $request->get('is_taking_bus');
+        $message = $request->get('is_taking_bus') ? 'true' : 'false';
+        $student->save();
+        return response()->json([
+            'success' => true,
+            'message' => 'Bus status changed to ' . $message . ' successfully',
+            'student' => $student
+        ]);
+    }
     /**
      * Display the specified resource.
      */
