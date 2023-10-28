@@ -17,8 +17,8 @@ class InitSeeder extends Seeder
     public function run(): void
     {
 
-        for ($i = 3; $i <= 20; $i++) {
-            $student = Student::where('id', '>', 4)->inRandomOrder()->first();
+        for ($i = 7; $i <= 20; $i++) {
+            $student = Student::where('id', '>', 6)->inRandomOrder()->first();
             $student->address_id = $i;
             $student->joined = true;
             $student->save();
@@ -42,11 +42,20 @@ class InitSeeder extends Seeder
         $student->order = 2;
         $student->save();
 
-        for ($i = 1; $i <= 5; $i++) {
-            $student = Student::where('id', '>', 4)->where('joined', true)->inRandomOrder()->first();
-            $student->route_id = $route->id;
-            $student->order = $i + 2;
+        // Demo Route
+        for ($i = 1; $i <= 4; $i++) {
+            $student = Student::find($i);
+            $student->route_id = 1;
+            $student->address_id = $i;
+            $student->order = $i;
             $student->save();
         }
+
+        // for ($i = 1; $i <= 5; $i++) {
+        //     $student = Student::where('id', '>', 6)->where('joined', true)->inRandomOrder()->first();
+        //     $student->route_id = $route->id;
+        //     $student->order = $i + 2;
+        //     $student->save();
+        // }
     }
 }
