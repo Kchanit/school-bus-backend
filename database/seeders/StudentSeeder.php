@@ -22,6 +22,7 @@ class StudentSeeder extends Seeder
             $student->first_name = $faker->firstName();
             $student->last_name = $faker->lastName();
             $student->parent_citizen_id = $faker->unique()->numerify('#############');
+            $student->parent_id = 1;
             $student->joined = true;
             $student->image_url = 'https://storage.googleapis.com/school-bus-bucket/kid1.jpg';
             $student->save();
