@@ -34,6 +34,16 @@ class DriverController extends Controller
         //
     }
 
+    public function getImage(Driver $driver)
+    {
+        $driver = Driver::find($driver->id);
+        $image_url = asset($driver->image_path);
+
+        return response()->json([
+            'success' => true,
+            'image_url' => $image_url
+        ]);
+    }
     /**
      * Store a newly created resource in storage.
      */

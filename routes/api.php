@@ -40,6 +40,7 @@ Route::post('/routes/update-order', [RouteController::class, 'updateOrder']);
 
 // DriverAPI
 Route::post('/drivers/get-driver', [DriverController::class, 'getDriver']);
+Route::get('/drivers/{driver}/get-image', [DriverController::class, 'getImage']);
 
 Route::apiResource('/students', StudentController::class);
 Route::apiResource('/addresses', AddressController::class);

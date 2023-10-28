@@ -43,12 +43,21 @@ class DriverController extends Controller
         $driver->last_name = $request->lastName;
         $driver->email = $request->email;
         $driver->password = $password;
+        // if ($request->hasFile('image_url')) {
+        //     $path = $request->file('image_url')->store('images/drivers', 'public');
+        // } else {
+        //     $path = "images/drivers/default.jpg";
+        // }
         if ($request->hasFile('image_url')) {
-            $path = $request->file('image_url')->store('images/drivers', 'public');
+            $image = $request->file('image_url');
+            $imageName = $driver->firstName . '_' . time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('images/drivers'), $imageName);
+            $imageURL = 'images/drivers/' . $imageName;
         } else {
-            $path = "images/drivers/default.jpg";
+            $imageURL = 'images/drivers/default.jpg';
         }
-        $driver->image_url = $path;
+
+        $driver->image_path = $imageURL;
         $driver->save();
 
         return redirect()->route('drivers.index');
@@ -95,7 +104,7 @@ class DriverController extends Controller
         return redirect()->route('drivers.index');
     }
 
-   
+
 
     /**
      * Remove the specified resource from storage.
