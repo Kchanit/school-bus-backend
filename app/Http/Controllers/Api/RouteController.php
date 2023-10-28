@@ -71,7 +71,6 @@ class RouteController extends Controller
         $driver = Driver::find($driver_id);
 
         $lastStudent = null;
-        // If $driver is not provided, create a new route
         if (!$driver->route) {
             // Create a new route
             $route = new Route();

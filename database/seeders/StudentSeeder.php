@@ -18,31 +18,42 @@ class StudentSeeder extends Seeder
         $faker = \Faker\Factory::create();
 
         $student = new Student();
-        $student->first_name = 'Jimmy';
-        $student->last_name = 'Carter';
-        $student->parent_citizen_id = '1234567890123';
+        $student->first_name = 'Michael';
+        $student->last_name = 'Jackson';
+        $student->parent_citizen_id = '1234567890111';
         $student->address_id = 1;
         $student->joined = true;
         $student->image_url = 'https://storage.googleapis.com/school-bus-bucket/kid1.jpg';
         $student->save();
 
-        // $address = Address::find(1);
-        // $address->student_id = 1;
-        // $address->save();
+        $address = Address::find(1);
+        $address->student_id = 1;
+        $address->save();
+
+        $student = new Student();
+        $student->first_name = 'Micky';
+        $student->last_name = 'Jackson';
+        $student->parent_citizen_id = '1234567890111';
+        $student->address_id = 2;
+        $student->joined = true;
+        $student->save();
+
+        $address = Address::find(2);
+        $address->student_id = 2;
+        $address->save();
+
+        $student = new Student();
+        $student->first_name = 'Jimmy';
+        $student->last_name = 'Carter';
+        $student->parent_citizen_id = '1234567890123';
+        $student->image_url = 'https://storage.googleapis.com/school-bus-bucket/kid1.jpg';
+        $student->save();
 
         $student = new Student();
         $student->first_name = 'Jane';
         $student->last_name = 'Carter';
         $student->parent_citizen_id = '1234567890123';
-        $student->address_id = 1;
-        $student->joined = true;
         $student->save();
-
-        // $address = Address::find(2);
-        // $address->student_id = 2;
-        // $address->save();
-
-
 
         for ($i = 1; $i <= 100; $i++) {
             $student = new Student();
@@ -52,17 +63,7 @@ class StudentSeeder extends Seeder
             $student->save();
         }
 
-        // $student = new Student();
-        // $student->first_name = 'John';
-        // $student->last_name = 'Cena';
-        // $student->parent_citizen_id = '1234567890124';
-        // $student->save();
 
-        // $student = new Student();
-        // $student->first_name = 'Michael';
-        // $student->last_name = 'Jackson';
-        // $student->parent_citizen_id = '1234567890125';
-        // $student->save();
 
         // $student = new Student();
         // $student->first_name = 'Snoop';

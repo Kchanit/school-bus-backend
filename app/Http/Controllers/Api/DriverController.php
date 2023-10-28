@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Driver;
+use App\Models\Student;
 use Illuminate\Http\Request;
 
 class DriverController extends Controller
@@ -15,7 +16,16 @@ class DriverController extends Controller
     {
         //
     }
-
+    public function getDriver(Request $request)
+    {
+        $student_id = $request->student_id;
+        $student = Student::find($student_id);
+        $driver = $student->route->driver;
+        return response()->json([
+            'success' => true,
+            'driver' => $driver
+        ]);
+    }
     /**
      * Show the form for creating a new resource.
      */

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Driver;
+use App\Models\Student;
 use Illuminate\Http\Request;
 use Nette\Utils\Random;
 
@@ -93,6 +94,8 @@ class DriverController extends Controller
 
         return redirect()->route('drivers.index');
     }
+
+   
 
     /**
      * Remove the specified resource from storage.
