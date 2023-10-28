@@ -45,19 +45,7 @@ class RouteController extends Controller
         return view('routes.add', ['driver' => $driver, 'students' => $students]);
     }
 
-    public function updateOrder(Request $request)
-    {
-        $students = $request->get('students');
-        foreach ($students as $index => $student) {
-            $student = Student::find($student['id']);
-            $student->order = $index + 1;
-            $student->save();
-        }
-        return response()->json([
-            'success' => true,
-            'message' => 'Order updated successfully'
-        ]);
-    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -130,6 +118,41 @@ class RouteController extends Controller
             'students' => $students
         ]);
     }
+
+    public function updateOrder(Request $request)
+    {
+        $students = $request->get('students');
+        foreach ($students as $index => $student) {
+            $student = Student::find($student['id']);
+            $student->order = $index + 1;
+            $student->save();
+        }
+
+        $updatedStudents = Student::whereIn('id', array_column($students, 'id'))->get();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Order updated successfully',
+            'students' => $updatedStudents
+        ]);
+    }
+
+    public function getRouteAddress(Request $request)
+    {
+        $driver_id = $request->get('driver_id');
+        $driver = Driver::find($driver_id);
+        $route = Route::where('driver_id', $driver->id)->first();
+        $students = $route->students->sortBy('order');
+        $addresses = [];
+        foreach ($students as $student) {
+            $addresses[] = $student->address;
+        }
+        return response()->json([
+            'success' => true,
+            'addresses' => $addresses
+        ]);
+    }
+
     /**
      * Update the specified resource in storage.
      */

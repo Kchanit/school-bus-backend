@@ -37,6 +37,7 @@ Route::post('/students/enroll', [StudentController::class, 'enrollStudent']);
 Route::post('/students/change-bus-status', [StudentController::class, 'changeBusStatus']);
 Route::post('/routes/get-my-route', [RouteController::class, 'getMyRoute']);
 Route::post('/routes/update-order', [RouteController::class, 'updateOrder']);
+Route::post('/routes/get-route-address', [RouteController::class, 'getRouteAddress']);
 
 // DriverAPI
 Route::post('/drivers/get-driver', [DriverController::class, 'getDriver']);
