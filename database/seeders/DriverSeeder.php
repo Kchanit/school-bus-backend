@@ -18,6 +18,7 @@ class DriverSeeder extends Seeder
         $driver->last_name = 'Doe';
         $driver->email = 'johnny@gmail.com';
         $driver->password = bcrypt('1234');
+        $driver->image_url = 'images/drivers/driver1.jpg';
         $driver->save();
 
         Driver::factory()->count(10)->create();

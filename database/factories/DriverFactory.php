@@ -21,6 +21,7 @@ class DriverFactory extends Factory
             'last_name' => $this->faker->lastName(),
             'email' => $this->faker->email(),
             'password' => bcrypt('1234'),
+            'image_url' => 'images/drivers/default.jpg',
         ];
     }
 }

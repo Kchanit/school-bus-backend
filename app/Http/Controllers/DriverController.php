@@ -42,6 +42,12 @@ class DriverController extends Controller
         $driver->last_name = $request->lastName;
         $driver->email = $request->email;
         $driver->password = $password;
+        if ($request->hasFile('image_url')) {
+            $path = $request->file('image_url')->store('images/drivers', 'public');
+        } else {
+            $path = "images/drivers/default.jpg";
+        }
+        $driver->image_url = $path;
         $driver->save();
 
         return redirect()->route('drivers.index');

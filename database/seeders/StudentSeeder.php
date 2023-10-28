@@ -23,6 +23,7 @@ class StudentSeeder extends Seeder
         $student->parent_citizen_id = '1234567890123';
         $student->address_id = 1;
         $student->joined = true;
+        $student->image_url = 'https://storage.googleapis.com/school-bus-bucket/kid1.jpg';
         $student->save();
 
         // $address = Address::find(1);

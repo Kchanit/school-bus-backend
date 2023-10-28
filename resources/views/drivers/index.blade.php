@@ -14,7 +14,7 @@
                             <li class="flex col-span-2 items-center py-4 px-6">
                                 <span class="text-gray-700 text-lg font-medium mr-4">{{ $loop->iteration . '.' }}</span>
                                 <img class="w-12 h-12 rounded-full object-cover mr-4"
-                                    src="https://randomuser.me/api/portraits/women/72.jpg" alt="User avatar">
+                                    src="{{ asset('storage/' . $driver->image_url) }}" alt="User avatar">
                                 <div class="flex-1">
                                     <h3 class="text-lg font-medium text-gray-800">
                                         {{ $driver->first_name . ' ' . $driver->last_name }}

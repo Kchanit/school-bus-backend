@@ -6,7 +6,7 @@
             <!-- Modal header -->
             <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
                 <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                    Confirm Create
+                    Confirm Driver Details
                 </h3>
 
             </div>
@@ -16,28 +16,28 @@
 
                     <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
                         <dt class="font-medium text-gray-900">First Name</dt>
-                        <dd class="text-gray-700 sm:col-span-2">John Frusciante</dd>
+                        <dd class="text-gray-700 sm:col-span-2" id="modalFirstName"></dd>
                     </div>
 
                     <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
                         <dt class="font-medium text-gray-900">Last Name</dt>
-                        <dd class="text-gray-700 sm:col-span-2">Guitarist</dd>
+                        <dd class="text-gray-700 sm:col-span-2" id="modalLastName"></dd>
                     </div>
                     <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
                         <dt class="font-medium text-gray-900">Email</dt>
-                        <dd class="text-gray-700 sm:col-span-2">Guitarist</dd>
+                        <dd class="text-gray-700 sm:col-span-2" id="modalEmail"></dd>
                     </div>
 
-                    <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
+                    {{-- <div class="grid grid-cols-1 gap-1 py-3 sm:grid-cols-3 sm:gap-4">
                         <dt class="font-medium text-gray-900">Password</dt>
-                        <dd class="text-gray-700 sm:col-span-2">$1,000,000+</dd>
-                    </div>
+                        <dd class="text-gray-700 sm:col-span-2"></dd>
+                    </div> --}}
 
                 </dl>
             </div>
             <!-- Modal footer -->
             <div class="flex items-center p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
-                <button data-modal-hide="staticModal" type="button"
+                <button data-modal-hide="staticModal" type="button" id="confirmCreate"
                     class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Confirm
                 </button>
                 <button data-modal-hide="staticModal" type="button"
