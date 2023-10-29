@@ -112,7 +112,7 @@ class RouteController extends Controller
         $driver_id = $request->get('driver_id');
         $driver = Driver::find($driver_id);
         $route = Route::where('driver_id', $driver->id)->first();
-        $students = $route->students->sortBy('order');
+        $students = $route->students;
         return response()->json([
             'success' => true,
             'students' => $students
@@ -128,12 +128,12 @@ class RouteController extends Controller
             $student->save();
         }
 
-        $updatedStudents = Student::whereIn('id', array_column($students, 'id'))->get();
+        // $updatedStudents = Student::whereIn('id', array_column($students, 'id'))->get();
 
         return response()->json([
             'success' => true,
             'message' => 'Order updated successfully',
-            'students' => $updatedStudents
+            // 'students' => $updatedStudents
         ]);
     }
 
