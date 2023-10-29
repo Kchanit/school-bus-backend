@@ -96,6 +96,18 @@ class StudentController extends Controller
         ]);
     }
 
+    public function updateStatus(Request $request)
+    {
+        $student = Student::find($request->get('student_id'));
+        $student->status = $request->get('status');
+        $student->save();
+        return response()->json([
+            'success' => true,
+            'message' => 'Status updated successfully',
+            'student' => $student
+        ]);
+    }
+
     public function changeBusStatus(Request $request)
     {
         $student = Student::find($request->get('student_id'));

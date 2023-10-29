@@ -35,6 +35,8 @@ Route::post('/students/my-students', [StudentController::class, 'myStudent']);
 Route::post('/students/get-my-students', [StudentController::class, 'getMyStudents']);
 Route::post('/students/enroll', [StudentController::class, 'enrollStudent']);
 Route::post('/students/change-bus-status', [StudentController::class, 'changeBusStatus']);
+Route::post('/students/update-status', [StudentController::class, 'updateStatus']);
+
 Route::post('/routes/get-my-route', [RouteController::class, 'getMyRoute']);
 Route::post('/routes/update-order', [RouteController::class, 'updateOrder']);
 Route::post('/routes/get-route-address', [RouteController::class, 'getRouteAddress']);
