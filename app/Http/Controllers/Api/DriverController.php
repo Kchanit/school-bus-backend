@@ -16,10 +16,9 @@ class DriverController extends Controller
     {
         //
     }
-    public function getDriver(Request $request)
+    public function getDriver(Request $request, $studentId)
     {
-        $student_id = $request->student_id;
-        $student = Student::find($student_id);
+        $student = Student::find($studentId);
         $driver = $student->route->driver;
         return response()->json([
             'success' => true,
@@ -73,7 +72,27 @@ class DriverController extends Controller
      */
     public function update(Request $request, Driver $driver)
     {
-        //
+    }
+
+    public function changePassword(Request $request)
+    {
+        $driver = Driver::find($request->get('driver_id'));
+        $password = bcrypt($request->get('password'));
+        if ($driver->password == $password) {
+            $driver->password = bcrypt($request->get('new_password'));
+            $driver->save();
+            return response()->json([
+                'message' => 'Password updated successfully',
+                'success' => true,
+                'driver' => $driver
+            ]);
+        } else {
+            return response()->json([
+                'message' => 'Password does not match',
+                'success' => false,
+                'driver' => $driver
+            ]);
+        }
     }
 
     /**

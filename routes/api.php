@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\AddressController;
 use App\Http\Controllers\Api\DriverController;
 use App\Http\Controllers\Api\RouteController;
 use App\Http\Controllers\Api\StudentController;
+use App\Http\Controllers\Api\UserController as ApiUserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ApiNotificationController;
@@ -25,25 +26,30 @@ Route::post('/register/validate', [AuthController::class, 'validateRegister']);
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/users', [UserController::class, 'index']);
+Route::put('/users/{id}/change-password', [ApiUserController::class, 'changePassword']); //
 Route::put('/users/{id}', [UserController::class, 'updateFbToken']);
 Route::post('/sendNotification/{fbtoken}/{title}/{body}', [ApiNotificationController::class, 'SendNotification']);
 // Route::post('/send-notification', [ApiNotificationController::class, 'sendNotification']);
 // Route::put('/users/{id}', [UserController::class, 'update']);
 Route::get('/user', [UserController::class, 'show']);
 
-Route::post('/students/my-students', [StudentController::class, 'myStudent']);
-Route::post('/students/get-my-students', [StudentController::class, 'getMyStudents']);
+// StudentAPI
+Route::get('/students/{citizen_id}/my-students', [StudentController::class, 'myStudent']); // Select Student
+Route::get('/students/{parentId}/get-my-students', [StudentController::class, 'getMyStudents']);
 Route::post('/students/enroll', [StudentController::class, 'enrollStudent']);
-Route::post('/students/change-bus-status', [StudentController::class, 'changeBusStatus']);
-Route::post('/students/update-status', [StudentController::class, 'updateStatus']);
+Route::put('/students/{id}/change-bus-status', [StudentController::class, 'changeBusStatus']); //
+Route::put('/students/{id}/update-status', [StudentController::class, 'updateStatus']); //
 
-Route::post('/routes/get-my-route', [RouteController::class, 'getMyRoute']);
-Route::post('/routes/update-order', [RouteController::class, 'updateOrder']);
-Route::post('/routes/get-route-address', [RouteController::class, 'getRouteAddress']);
+// RouteAPI
+Route::get('/routes/{driverId}/get-my-route', [RouteController::class, 'getMyRoute']);
+Route::get('/routes/{driverId}/get-route-address', [RouteController::class, 'getRouteAddress']);
+// Route::post('/routes/update-order', [RouteController::class, 'updateOrder']); //
+Route::put('/routes/update-order', [RouteController::class, 'updateOrder']);
 
 // DriverAPI
-Route::post('/drivers/get-driver', [DriverController::class, 'getDriver']);
+Route::get('/drivers/{studentId}/get-driver', [DriverController::class, 'getDriver']);
 Route::get('/drivers/{driver}/get-image', [DriverController::class, 'getImage']);
+Route::put('/drivers/change-password', [DriverController::class, 'changePassword']); //
 
 Route::apiResource('/students', StudentController::class);
 Route::apiResource('/addresses', AddressController::class);

@@ -76,9 +76,9 @@ class StudentController extends Controller
     /**
      * Display a list of students of a parent.
      */
-    public function myStudent(Request $request)
+    public function myStudent(Request $request, $citizen_id)
     {
-        $citizen_id = $request->get('citizen_id');
+        // $citizen_id = $request->get('citizen_id');
         $students = Student::where('parent_citizen_id', $citizen_id)->get();
         return response()->json([
             'success' => true,
@@ -86,19 +86,18 @@ class StudentController extends Controller
         ]);
     }
 
-    public function getMyStudents(Request $request)
+    public function getMyStudents(Request $request, $parentId)
     {
-        $citizen_id = $request->get('citizen_id');
-        $students = Student::where('parent_citizen_id', $citizen_id)->where('joined', true)->get();
+        $students = Student::where('parent_id', $parentId)->where('joined', true)->get();
         return response()->json([
             'success' => true,
             'students' => $students
         ]);
     }
 
-    public function updateStatus(Request $request)
+    public function updateStatus(Request $request, $id)
     {
-        $student = Student::find($request->get('student_id'));
+        $student = Student::find($id);
         $student->status = $request->get('status');
         $student->save();
         return response()->json([
@@ -108,9 +107,9 @@ class StudentController extends Controller
         ]);
     }
 
-    public function changeBusStatus(Request $request)
+    public function changeBusStatus(Request $request, $id)
     {
-        $student = Student::find($request->get('student_id'));
+        $student = Student::find($id);
         $student->is_taking_bus = $request->get('is_taking_bus');
         $message = $request->get('is_taking_bus') ? 'true' : 'false';
         $student->save();

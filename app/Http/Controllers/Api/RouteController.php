@@ -107,10 +107,9 @@ class RouteController extends Controller
     {
     }
 
-    public function getMyRoute(Request $request)
+    public function getMyRoute(Request $request, $driverId)
     {
-        $driver_id = $request->get('driver_id');
-        $driver = Driver::find($driver_id);
+        $driver = Driver::find($driverId);
         $route = Route::where('driver_id', $driver->id)->first();
         $students = $route->students;
         return response()->json([
@@ -118,6 +117,17 @@ class RouteController extends Controller
             'students' => $students
         ]);
     }
+    // public function getMyRoute(Request $request)
+    // {
+    //     $driver_id = $request->get('driver_id');
+    //     $driver = Driver::find($driver_id);
+    //     $route = Route::where('driver_id', $driver->id)->first();
+    //     $students = $route->students;
+    //     return response()->json([
+    //         'success' => true,
+    //         'students' => $students
+    //     ]);
+    // }
 
     public function updateOrder(Request $request)
     {
@@ -137,10 +147,10 @@ class RouteController extends Controller
         ]);
     }
 
-    public function getRouteAddress(Request $request)
+    public function getRouteAddress(Request $request, $driverId)
     {
-        $driver_id = $request->get('driver_id');
-        $driver = Driver::find($driver_id);
+        // $driver_id = $request->get('driver_id');
+        $driver = Driver::find($driverId);
         $route = Route::where('driver_id', $driver->id)->first();
         $students = $route->students->sortBy('order');
         $addresses = [];
