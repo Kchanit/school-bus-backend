@@ -86,6 +86,14 @@ class StudentController extends Controller
         ]);
     }
 
+    public function getParentFbtoken(Request $request)
+    {
+        $student = Student::find($request->get('student_id'));
+        $parent = $student->parent;
+        $fbtoken = $parent->fbtoken;
+        // Return the token
+        return response()->json(['fbtoken' => $fbtoken]);
+    }
     public function getMyStudents(Request $request, $parentId)
     {
         $students = Student::where('parent_id', $parentId)->where('joined', true)->get();

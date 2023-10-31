@@ -28,8 +28,9 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::get('/users', [UserController::class, 'index']);
 Route::put('/users/{id}/change-password', [ApiUserController::class, 'changePassword']); //
 Route::put('/users/{id}', [UserController::class, 'updateFbToken']);
-Route::post('/sendNotification/{fbtoken}/{title}/{body}', [ApiNotificationController::class, 'SendNotification']);
-// Route::post('/send-notification', [ApiNotificationController::class, 'sendNotification']);
+
+Route::post('/sendNotification/{student_id}/{title}/{body}', [ApiNotificationController::class, 'SendNotification']);
+
 // Route::put('/users/{id}', [UserController::class, 'update']);
 Route::get('/user', [UserController::class, 'show']);
 
@@ -45,6 +46,8 @@ Route::get('/routes/{driverId}/get-my-route', [RouteController::class, 'getMyRou
 Route::get('/routes/{driverId}/get-route-address', [RouteController::class, 'getRouteAddress']);
 // Route::post('/routes/update-order', [RouteController::class, 'updateOrder']); //
 Route::put('/routes/update-order', [RouteController::class, 'updateOrder']);
+
+Route::get('/get-parent-fbtoken', [StudentController::class, 'getParentFbtoken']);
 
 // DriverAPI
 Route::get('/drivers/{studentId}/get-driver', [DriverController::class, 'getDriver']);

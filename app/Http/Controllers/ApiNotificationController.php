@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Student;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
@@ -15,6 +16,10 @@ class ApiNotificationController extends BaseController
     {
         $SERVER_API_KEY = 'AAAAaRqmZt8:APA91bGi-jKCAdkxXJPK-6d9OW7X0jU4KPeL1RhrHfk8RtPrOb8QsF7sWKsmukil-mZN4_wUaY55M3Q7q-K6kwLFFhT9X8C1aMLBUmM9IFPL1rPk5ivswYEKwcsb1fd9K1I_tdIA4ufn';
 
+        $student = Student::find($request->get('student_id'));
+        $parent = $student->parent;
+        $fbtoken = $parent->fbtoken;
+
         $data = [
             'body' => $request->body,
             'title' => $request->title,
@@ -25,7 +30,7 @@ class ApiNotificationController extends BaseController
         ];
 
         $fields = array(
-            'to' => $request->fbtoken,
+            'to' => $fbtoken,
             'notification' => $data,
             // 'data' => $data,
         );
