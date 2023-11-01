@@ -65,7 +65,7 @@ class DriverController extends Controller
 
     public function list()
     {
-        $drivers = Driver::with('route')->paginate(10);
+        $drivers = Driver::with('route')->sortable()->paginate(10);
         return view('drivers.list', ['drivers' => $drivers]);
     }
 

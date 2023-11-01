@@ -4,14 +4,23 @@
         <form method="POST" id="myForm" action="{{ route('routes.store', ['driver_id' => $driver->id]) }}">
             @csrf
             {{-- table --}}
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-                <h1 class="text-2xl font-bold mb-7">Select students for {{ $driver->getFullName() }}</h1>
-                <button type="button" id="saveButton" class="btn btn-primary bg-green-500 p-2 rounded-lg">Save</button>
+            <div class="container mx-auto px-4  sm:px-6 lg:px-8 py-8">
+                <div class="flex justify-between mb-8">
+                    <h1 class="text-2xl font-bold mb-7">Select students for {{ $driver->getFullName() }}</h1>
+                    <div>
+                        <button type="button" id="saveButton"
+                            class="btn btn-primary flex items-center text-sm  px-4 py-3 bg-green-500 hover:bg-green-700 p-2 rounded-lg text-white"><svg
+                                xmlns="http://www.w3.org/2000/svg" height="1em" class="fill-white mr-2"
+                                viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                                <path
+                                    d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V173.3c0-17-6.7-33.3-18.7-45.3L352 50.7C340 38.7 323.7 32 306.7 32H64zm0 96c0-17.7 14.3-32 32-32H288c17.7 0 32 14.3 32 32v64c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V128zM224 288a64 64 0 1 1 0 128 64 64 0 1 1 0-128z" />
+                            </svg>
+                            Save</button>
+
+                    </div>
+                </div>
                 <input type="hidden" name="students_id" id="selectedData" value="">
 
-                <div id="events" class="box text-red-600">
-                    Row selected - new information added at the top
-                </div>
                 <table id="myTable" class="display">
                     <thead>
                         <tr>
@@ -81,49 +90,8 @@
                         'selectAll',
                         'selectNone',
                         'showSelected',
-                        {
-                            text: 'Show Selected',
-                            action: function() {
-                                var rowdata = table.rows('.selected').data();
-                                var selectedData = [];
-
-                                var msg = '';
-                                for (var i = 0; i < rowdata.length; i++) {
-                                    msg += rowdata[i] + ","
-                                }
-                                message('[#]' + msg);
-
-                                for (var i = 0; i < rowdata.length; i++) {
-                                    selectedData.push(rowdata[i][0])
-                                }
-                                console.log(selectedData);
-
-
-                                $.ajax({
-                                    type: 'POST',
-                                    url: '{{ route('routes.store') }}',
-                                    // url: 'http:\/\/localhost/routes/create/1',
-                                    headers: {
-                                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
-                                            'content')
-                                    },
-                                    data: {
-                                        _token: '{{ csrf_token() }}',
-                                        "driver_id": {{ $driver->id }},
-                                        "students_id": selectedData,
-                                    },
-                                    success: function(response, status, xhr) {
-                                        console.log(response);
-                                    },
-                                    error: function(response) {
-                                        console.error('Request error with status:', response
-                                            .status);
-                                    },
-                                });
-
-                            }
-                        }
                     ],
+                    pagingType: 'simple',
                     select: {
                         style: 'multi'
                     }

@@ -5,11 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Kyslik\ColumnSortable\Sortable;
 use Laravel\Sanctum\HasApiTokens;
 
 class Driver extends Authenticatable
 {
-    use HasFactory, Notifiable, HasApiTokens;
+    use HasFactory, Notifiable, HasApiTokens, Sortable;
+
+    public $sortable = ['id', 'first_name', 'last_name', 'email'];
 
     public function getFullName()
     {

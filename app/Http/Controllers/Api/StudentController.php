@@ -17,7 +17,7 @@ class StudentController extends Controller
     public function index()
     {
         // $students = Student::has('address')->get();
-        $students = Student::has('address')->paginate(10);
+        $students = Student::has('address')->sortable()->paginate(10);
         return view('student.index', ['students' => $students]);
     }
 

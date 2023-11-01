@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('routes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('driver_id')->constrained();
+            $table->foreignId('driver_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

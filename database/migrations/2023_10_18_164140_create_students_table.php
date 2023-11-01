@@ -21,7 +21,7 @@ return new class extends Migration
             $table->integer('order')->nullable();
             $table->foreignId('parent_id')->nullable()->constrained('users');
             $table->foreignId('address_id')->nullable()->constrained('addresses');
-            $table->foreignId('route_id')->nullable()->constrained('routes');
+            $table->foreignId('route_id')->nullable()->cascadeOnDelete();
             $table->boolean('joined')->default(false);
             $table->boolean('is_taking_bus')->default(true);
             $table->timestamps();

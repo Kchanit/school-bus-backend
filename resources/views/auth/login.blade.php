@@ -6,16 +6,12 @@
         @csrf
         <div class="text-center mt-4">
             <h1 class="block text-2xl font-bold text-gray-800 dark:text-white">Sign in</h1>
-            <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
+            {{-- <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">
                 Don't have an account yet?
                 <a class="text-blue-600 decoration-2 hover:underline font-medium" href="{{ route('register') }}">
                     Sign up here
                 </a>
-            </p>
-        </div>
-
-        <div>
-            Default
+            </p> --}}
         </div>
         <div class="mt-5">
 
@@ -33,8 +29,8 @@
                 <div class="flex justify-between">
                     <x-input-label class="block text-sm mb-2 dark:text-white" for="password" :value="__('Password')" />
                     @if (Route::has('password.request'))
-                        <a class="text-sm text-blue-600 decoration-2 hover:underline font-medium"
-                            href="{{ route('password.request') }}">{{ __('Forgot your password?') }}</a>
+                        {{-- <a class="text-sm text-blue-600 decoration-2 hover:underline font-medium"
+                            href="{{ route('password.request') }}">{{ __('Forgot your password?') }}</a> --}}
                     @endif
                 </div>
                 <x-text-input id="password" class="block w-full" type="password" name="password" required
@@ -46,14 +42,14 @@
             <div class="block mt-4">
                 <label for="remember_me" class="inline-flex items-center">
                     <input id="remember_me" type="checkbox"
-                        class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
+                        class="rounded border-gray-300 text-blue-600 shadow-sm focus:ring-blue-500" name="remember">
 
                     <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
                 </label>
             </div>
 
             <button type="submit"
-                class="mt-4 mb-2 py-3 px-4 w-full inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-blue-500 text-black hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800">
+                class="mt-4 mb-2 py-3 px-4 w-full text-white inline-flex justify-center items-center gap-2 rounded-md border border-transparent font-semibold bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all text-sm dark:focus:ring-offset-gray-800">
                 Sign in
             </button>
 

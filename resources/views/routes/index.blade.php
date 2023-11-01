@@ -2,16 +2,16 @@
 @section('content')
     <section>
         <div class="flex flex-col justify-center gap-8 mt-12">
-            <h1 class="self-center text-2xl font-semiBold">Choose A Driver</h1>
+            <h1 class="self-center text-2xl font-bold">Select a route</h1>
 
-            <div class="bg-white shadow-md rounded-md overflow-hidden max-w-xl mx-auto">
+            <div class="bg-white shadow-md rounded-md overflow-hidden mx-auto">
                 <div class="bg-gray-100 py-2 px-4">
-                    <h2 class="text-xl font-semibold text-gray-800">Route List</h2>
+                    <h2 class="text-xl font-semibold text-gray-700">Route List</h2>
                 </div>
                 <ul class="divide-y divide-gray-200">
                     {{-- @if (count($routes) > 0) --}}
                     @foreach ($drivers as $driver)
-                        <a href="{{ route('routes.show', ['driver' => $driver]) }}" class="grid grid-cols-3">
+                        <a href="{{ route('routes.show', ['driver' => $driver]) }}" class="grid grid-cols-4">
                             <li class="flex col-span-2 items-center py-4 px-6">
                                 <span class="text-gray-700 text-lg font-medium mr-4">{{ $loop->iteration . '.' }}</span>
                                 <img class="w-12 h-12 rounded-full object-cover mr-4"
@@ -25,10 +25,22 @@
                             </li>
                             <li class="flex items-center justify-center py-4 px-6">
                                 <div class="flex-1">
-                                    <h3 class="text-lg font-medium text-gray-800">
-                                        {{ $driver->route->id ?? 'No Route' }}
+                                    <h3 class="text-lg text-center font-medium text-gray-800">
+                                        Route ID
                                     </h3>
-                                    <p class="text-gray-600 text-base">{{ $driver->route->id ?? 'No Route' }}</p>
+                                    <p class="text-gray-600 text-center text-base">
+                                        {{ $driver->route->id ?? 'No Route' }}
+                                    </p>
+                                </div>
+                            </li>
+                            <li class="flex items-center justify-center py-4 px-6">
+                                <div class="flex-1">
+                                    <h3 class="text-lg text-center font-medium text-gray-800">
+                                        Students
+                                    </h3>
+                                    <p class="text-gray-600 text-center text-base">
+                                        {{ $driver->route->id ?? 'No Route' }}
+                                    </p>
                                 </div>
                             </li>
                         </a>

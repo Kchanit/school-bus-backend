@@ -1,35 +1,40 @@
 @extends('layouts.main')
 @section('content')
-    {{-- @include('common.alert') --}}
-    <h1 id="events">Show Route</h1>
-    <h1>
-        {{ $driver->getFullName() }}
-    </h1>
-    {{-- <a href="{{ route('routes.create', ['driver' => $driver]) }}" type="button"
-        class="m-6 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-6  focus:outline-none">Add
-        Student</a> --}}
-
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <form method="POST" id="myForm"
             action="{{ route('routes.update', ['route' => $route->id, 'driver_id' => $driver->id]) }}">
             @csrf
             @method('PUT')
-            <h1 class="text-2xl font-bold mb-7">Reorder route for {{ $driver->getFullName() }}</h1>
-            <button type="button" id="saveButton">
-                <a href=""
-                    class="inline-block rounded bg-green-600/90 px-4 py-2 text-xs font-medium text-white hover:bg-green-700">
-                    Save
-                </a>
-            </button>
-            <a href="{{ route('routes.create', ['driver' => $driver]) }}"
-                class="inline-block rounded bg-blue-600/90 px-4 py-2 text-xs font-medium text-white hover:bg-blue-700">Add
-                Student</a>
+            <div class="flex justify-between mb-12">
+                <h1 class="text-2xl font-bold">Reorder route for {{ $driver->getFullName() }}</h1>
+                <div class="flex gap-2">
+                    <button type="button" id="saveButton">
+                        <a href=""
+                            class="flex items-center rounded-lg bg-green-500 px-4 py-3 text-center text-xs font-medium text-white hover:bg-green-700">
+                            <svg xmlns="http://www.w3.org/2000/svg" height="1.5em" class="fill-white mr-2"
+                                viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                                <path
+                                    d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V173.3c0-17-6.7-33.3-18.7-45.3L352 50.7C340 38.7 323.7 32 306.7 32H64zm0 96c0-17.7 14.3-32 32-32H288c17.7 0 32 14.3 32 32v64c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V128zM224 288a64 64 0 1 1 0 128 64 64 0 1 1 0-128z" />
+                            </svg>
+                            Save
+                        </a>
+                    </button>
+                    <a href="{{ route('routes.create', ['driver' => $driver]) }}"
+                        class="flex items-center rounded-lg bg-blue-600/90 px-4 py-3 text-center text-xs font-medium text-white hover:bg-blue-700">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="1em" class="fill-white mr-2"
+                            viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                            <path
+                                d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" />
+                        </svg>
+                        Add Student</a>
+                </div>
+            </div>
             <input type="hidden" name="students_id" id="selectedData" value="">
             {{-- table --}}
             <table id="showTable" class="display">
                 <thead>
                     <tr>
-                        <th></th>
+                        <th>Order.</th>
                         <th>Student ID</th>
                         <th>First Name</th>
                         <th>Last Name</th>
@@ -55,7 +60,7 @@
                             <td>{{ $student->address->road }}</td>
                             <td>
                                 <a href="{{ route('routes.remove-student', ['student' => $student]) }}" type="button"
-                                    class="btn btn-primary bg-red-500 p-2 rounded-lg">Remove</a>
+                                    class="inline-block rounded px-4 py-2 text-xs font-medium text-red-600 hover:underline">Remove</a>
                             </td>
                         </tr>
                     @endforeach
@@ -66,18 +71,6 @@
 
     @include('common.script')
     <script>
-        function message(message) {
-            let el = document.querySelector('#events');
-            let div = document.createElement('div');
-
-            div.classList.add('flex', 'items-center', 'p-4', 'mb-4', 'text-green-800', 'rounded-lg', 'bg-green-50')
-
-            div.textContent = message;
-            el.prepend(div);
-        }
-        $('#showTable').on('draw.dt', function() {
-            message('💚 success')
-        });
         $(document).ready(function() {
             $('#showTable').DataTable({
                 rowReorder: {
@@ -94,7 +87,9 @@
                     //     orderable: false,
                     //     targets: '_all'
                     // }
-                ]
+                ],
+                lengthChange: false,
+                pagingType: 'simple'
             });
 
             $('#showTable tbody').on('row-reorder', function(e, diff, edit) {

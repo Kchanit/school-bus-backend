@@ -13,7 +13,7 @@
 
 
 <body>
-    <main class="inline-flex bg-white gap-4 content w-full min-h-screen">
+    <main class="inline-flex bg-slate-50 gap-4 content w-full min-h-screen">
         @include('layouts.sidebar')
         <div class="py-3 pr-4 w-full">
             @yield('content')
