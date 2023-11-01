@@ -37,7 +37,7 @@
                                 </div>
                             </th>
                             <th class="flex items-center whitespace-nowrap text-base font-semibold px-4 py-3 text-gray-900">
-                                @sortablelink('status', 'Status')
+                                @sortablelink('route_id', 'Route No.')
                                 <svg class="w-3 h-3 ml-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                     fill="currentColor" viewBox="0 0 24 24">
                                     <path
@@ -67,7 +67,7 @@
                                 {{-- Last name --}}
                                 <td class="whitespace-nowrap px-4 py-3 text-gray-700">{{ $student->last_name }}</td>
                                 {{-- District --}}
-                                <td class="whitespace-nowrap px-4 py-3 text-gray-700">{{ $student->joined }}</td>
+                                <td class="whitespace-nowrap px-4 py-3 text-gray-700">{{ $student->route_id ?? '-' }}</td>
                                 {{-- Road --}}
                                 <td class="whitespace-nowrap px-4 py-3 text-gray-700">{{ $student->address->home_address }}
                                 </td>
