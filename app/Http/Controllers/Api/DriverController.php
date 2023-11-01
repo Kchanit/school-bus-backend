@@ -20,9 +20,10 @@ class DriverController extends Controller
     {
         $student = Student::find($studentId);
         $driver = $student->route->driver;
+        $image_url = asset($driver->image_path);
         return response()->json([
             'success' => true,
-            'driver' => $driver
+            'driver' => array_merge($driver->toArray(), ['image_url' => $image_url])
         ]);
     }
     /**
