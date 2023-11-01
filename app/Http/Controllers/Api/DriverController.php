@@ -56,9 +56,14 @@ class DriverController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Driver $driver)
+    public function show(Driver $driver, $id)
     {
-        //
+        $driver = Driver::find($id);
+        $image_url = asset($driver->image_path);
+        return response()->json([
+            'success' => true,
+            'driver' => array_merge($driver->toArray(), ['image_url' => $image_url])
+        ]);
     }
 
     /**

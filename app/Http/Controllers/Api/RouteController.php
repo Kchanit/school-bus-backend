@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Address;
 use App\Models\Driver;
 use App\Models\Route;
 use App\Models\Student;
@@ -112,9 +113,17 @@ class RouteController extends Controller
         $driver = Driver::find($driverId);
         $route = Route::where('driver_id', $driver->id)->first();
         $students = $route->students;
+        $studentsWithAddress = [];
+        foreach ($students as $student) {
+            $studentData = $student->toArray();
+            $studentData['home_address'] = $student->address->home_address;
+            $studentData['home_latitude'] = $student->address->home_latitude;
+            $studentData['home_longitude'] = $student->address->home_longitude;
+            $studentsWithAddress[] = $studentData;
+        };
         return response()->json([
             'success' => true,
-            'students' => $students
+            'students' => $studentsWithAddress,
         ]);
     }
     // public function getMyRoute(Request $request)

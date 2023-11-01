@@ -51,6 +51,7 @@ Route::put('/routes/update-order', [RouteController::class, 'updateOrder']);
 Route::get('/get-parent-fbtoken', [StudentController::class, 'getParentFbtoken']);
 
 // DriverAPI
+Route::get('/drivers/{id}', [DriverController::class, 'show']);
 Route::get('/drivers/{studentId}/get-driver', [DriverController::class, 'getDriver']);
 Route::get('/drivers/{driver}/get-image', [DriverController::class, 'getImage']);
 Route::put('/drivers/{id}/change-password', [DriverController::class, 'changePassword']); //
