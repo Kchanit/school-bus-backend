@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Driver;
 use App\Models\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class DriverController extends Controller
 {
@@ -75,23 +76,27 @@ class DriverController extends Controller
     {
     }
 
-    public function changePassword(Request $request)
+    public function changePassword(Request $request, $id)
     {
-        $driver = Driver::find($request->get('driver_id'));
-        $password = bcrypt($request->get('password'));
-        if ($driver->password == $password) {
-            $driver->password = bcrypt($request->get('new_password'));
-            $driver->save();
+        // Find the user by ID
+        $user = Driver::find($id);
+
+        // Verify the old password
+        if (Hash::check($request->get('password'), $user->password)) {
+            // Hash and update the new password
+            $user->password = bcrypt($request->get('new_password'));
+            $user->save();
+
             return response()->json([
                 'message' => 'Password updated successfully',
                 'success' => true,
-                'driver' => $driver
+                'user' => $user
             ]);
         } else {
             return response()->json([
-                'message' => 'Password does not match',
+                'message' => 'Wrong password',
                 'success' => false,
-                'driver' => $driver
+                'user' => $user,
             ]);
         }
     }

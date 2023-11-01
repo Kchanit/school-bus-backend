@@ -33,10 +33,10 @@ class UserController extends Controller
     }
 
 
-    public function show()
+    public function show($id)
     {
-        $user = auth()->user();
-        return response()->json(['user' => $user], 200);
+        $user = User::find($id);
+        return response()->json(['success' => true, 'message' => 'Get user successfully', 'user' => $user], 200);
     }
 
     public function updateFbToken(Request $request, $id)
@@ -44,7 +44,7 @@ class UserController extends Controller
         // Logic to update an user record goes here
         $user = User::find($id);
         // $user->update($request->all());
-        
+
         // update fbtoken
         if ($request->has('fbtoken')) {
             $user->fbtoken = $request->input('fbtoken');

@@ -26,6 +26,7 @@ Route::post('/register/validate', [AuthController::class, 'validateRegister']);
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/users', [UserController::class, 'index']);
+Route::get('/users/{id}', [UserController::class, 'show']);
 Route::put('/users/{id}/change-password', [ApiUserController::class, 'changePassword']); //
 Route::put('/users/{id}', [UserController::class, 'updateFbToken']);
 
@@ -52,7 +53,7 @@ Route::get('/get-parent-fbtoken', [StudentController::class, 'getParentFbtoken']
 // DriverAPI
 Route::get('/drivers/{studentId}/get-driver', [DriverController::class, 'getDriver']);
 Route::get('/drivers/{driver}/get-image', [DriverController::class, 'getImage']);
-Route::put('/drivers/change-password', [DriverController::class, 'changePassword']); //
+Route::put('/drivers/{id}/change-password', [DriverController::class, 'changePassword']); //
 
 Route::apiResource('/students', StudentController::class);
 Route::apiResource('/addresses', AddressController::class);

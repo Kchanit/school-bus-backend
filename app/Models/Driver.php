@@ -11,6 +11,11 @@ class Driver extends Authenticatable
 {
     use HasFactory, Notifiable, HasApiTokens;
 
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+
     public function getFullName()
     {
         return $this->first_name . ' ' . $this->last_name;
