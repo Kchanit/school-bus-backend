@@ -58,7 +58,7 @@
                                     District
                                 </th>
                                 <th scope="col" class="px-6 py-3">
-                                    Parent Name
+                                    Address
                                 </th>
                             </tr>
                         </thead>

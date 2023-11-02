@@ -57,7 +57,7 @@
             }
 
             $(document).ready(function() {
-                let table = $('#myTable').DataTable({
+                var table = $('#myTable').DataTable({
                     dom: 'Bfrtip',
                     buttons: [
                         'selectAll',

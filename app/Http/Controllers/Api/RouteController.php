@@ -16,8 +16,8 @@ class RouteController extends Controller
      */
     public function index()
     {
-        $routes = Route::all();
-        $drivers = Driver::with('route')->paginate(6);
+        $routes = Route::with('driver')->get();
+        $drivers = Driver::with('route')->paginate(7);
         return view('routes.index', ['routes' => $routes, 'drivers' => $drivers]);
         // return view('routes.index', ['drivers' => $drivers]);
     }
