@@ -29,7 +29,7 @@ Route::put('/users/{id}', [UserController::class, 'updateFbToken']);
 Route::post('/sendNotification/{fbtoken}/{title}/{body}', [ApiNotificationController::class, 'SendNotification']);
 // Route::post('/send-notification', [ApiNotificationController::class, 'sendNotification']);
 // Route::put('/users/{id}', [UserController::class, 'update']);
-Route::get('/user', [UserController::class, 'show']);
+Route::get('/users/{id}', [UserController::class, 'show']);
 
 Route::post('/students/my-students', [StudentController::class, 'myStudent']);
 Route::post('/students/get-my-students', [StudentController::class, 'getMyStudents']);

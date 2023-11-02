@@ -107,25 +107,24 @@ class AddressSeeder extends Seeder
             ],
         ];
 
-        for ($i = 0; $i < count($route2); $i++) {
-            $student = new Student();
-            $student->first_name = $faker->firstName();
-            $student->last_name = $faker->lastName();
-            $student->parent_citizen_id = $faker->unique()->numerify('#############');
-            $student->joined = true;
-            $student->order = $i + 1;
+        // for ($i = 0; $i < count($route2); $i++) {
+        //     $address = new Address();
+        //     $address->home_address = $route2[$i]['home_address'];
+        //     $address->home_latitude = $route2[$i]['home_latitude'];
+        //     $address->home_longitude = $route2[$i]['home_longitude'];
+        //     $address->district = $route2[$i]['district'];
+        //     $address->road = $route2[$i]['road'];
+        //     $address->save();
 
-            $address = new Address();
-            $address->home_address = $route2[$i]['home_address'];
-            $address->home_latitude = $route2[$i]['home_latitude'];
-            $address->home_longitude = $route2[$i]['home_longitude'];
-            $address->district = $route2[$i]['district'];
-            $address->road = $route2[$i]['road'];
-            $address->save();
-
-            $student->address_id = $address->id;
-            $student->save();
-        }
+        //     $student = new Student();
+        //     $student->first_name = $faker->firstName();
+        //     $student->last_name = $faker->lastName();
+        //     $student->parent_citizen_id = $faker->unique()->numerify('#############');
+        //     $student->joined = true;
+        //     $student->order = $i + 1;
+        //     $student->address_id = $address->id;
+        //     $student->save();
+        // }
 
         $route3 = [
             [
