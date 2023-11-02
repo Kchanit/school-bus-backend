@@ -96,15 +96,18 @@ class DriverController extends Controller
             'lastName' => 'required',
         ]);
 
-        // $driver = Driver::find($request->id);
         $driver->first_name = $request->get('firstName');
         $driver->last_name = $request->get('lastName');
         $driver->save();
 
-        return redirect()->route('drivers.index');
+        return redirect()->route('drivers.list');
     }
 
-
+    public function destroy(Driver $driver)
+    {
+        $driver->delete();
+        return redirect()->route('drivers.list');
+    }
 
     /**
      * Remove the specified resource from storage.

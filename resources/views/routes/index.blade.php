@@ -5,7 +5,7 @@
             <div class="flex justify-between items-baseline">
                 <h1 class="text-2xl font-bold mb-7">Route List</h1>
                 <div>
-                    <a href="{{ route('drivers.create') }}"
+                    <a href="{{ route('routes.create') }}"
                         class="flex items-center rounded-lg bg-blue-600/90 px-4 py-3 text-center text-xs font-medium text-white hover:bg-blue-700">
                         <svg xmlns="http://www.w3.org/2000/svg" height="1em" class="fill-white mr-2"
                             viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
@@ -19,8 +19,8 @@
             <div class="bg-white shadow-md rounded-lg overflow-hidden mx-auto">
                 <ul class="divide-y divide-gray-200">
                     {{-- @if (count($routes) > 0) --}}
-                    @foreach ($drivers as $driver)
-                        <a href="{{ route('routes.show', ['driver' => $driver]) }}" class="grid grid-cols-7">
+                    @foreach ($routes as $route)
+                        <a href="{{ route('routes.show', ['driver' => $route->driver]) }}" class="grid grid-cols-7">
                             <li class="flex col-span-2 items-center justify-center py-4 px-6">
                                 <span
                                     class="text-gray-700 text-lg font-medium mr-16 ml-8">{{ $loop->iteration . '.' }}</span>
@@ -29,7 +29,7 @@
                                         Route No.
                                     </h3>
                                     <p class="text-gray-600 text-start text-base">
-                                        {{ $driver->route->id ?? 'No Route' }}
+                                        {{ $route->id ?? 'No Route' }}
                                     </p>
                                 </div>
                             </li>
@@ -39,7 +39,7 @@
                                         Students
                                     </h3>
                                     <p class="text-gray-600 text-start text-base">
-                                        {{ $driver->route->id ?? 'No Route' }}
+                                        {{ $route->students->count() ?? 'No Student' }}
                                     </p>
                                 </div>
                             </li>
@@ -48,12 +48,11 @@
                                     src="https://randomuser.me/api/portraits/women/72.jpg" alt="User avatar">
                                 <div class="flex-1">
                                     <h3 class="text-lg font-medium text-gray-800">
-                                        {{ $driver->first_name . ' ' . $driver->last_name }}
+                                        {{ ($route->driver->first_name ?? 'FirstName') . ' ' . ($route->driver->last_name ?? 'LastName') }}
                                     </h3>
-                                    <p class="text-gray-600 text-base">{{ $driver->email }}</p>
+                                    <p class="text-gray-600 text-base">{{ $route->driver->email ?? '' }}</p>
                                 </div>
                             </li>
-
                         </a>
                     @endforeach
                     {{-- @else
@@ -64,7 +63,7 @@
             <div class="flex w-full justify-center mt-8">
                 {{-- pagination --}}
                 <div class="inline-flex self-center items-center justify-center gap-3">
-                    <a href="{{ $drivers->previousPageUrl() }}"
+                    <a href="{{ $routes->previousPageUrl() }}"
                         class="inline-flex h-8 w-8 items-center justify-center rounded border border-gray-100 bg-white text-gray-900 rtl:rotate-180">
                         <span class="sr-only">Next Page</span>
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" viewBox="0 0 20 20" fill="currentColor">
@@ -75,12 +74,12 @@
                     </a>
 
                     <p class="text-xs text-gray-900">
-                        {{ $drivers->currentPage() }}
+                        {{ $routes->currentPage() }}
                         <span class="mx-0.25">/</span>
-                        {{ $drivers->lastPage() }}
+                        {{ $routes->lastPage() }}
                     </p>
 
-                    <a href="{{ $drivers->nextPageUrl() }}"
+                    <a href="{{ $routes->nextPageUrl() }}"
                         class="inline-flex h-8 w-8 items-center justify-center rounded border border-gray-100 bg-white text-gray-900 rtl:rotate-180">
                         <span class="sr-only">Next Page</span>
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" viewBox="0 0 20 20" fill="currentColor">
