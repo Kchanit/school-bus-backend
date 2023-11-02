@@ -37,12 +37,12 @@ class DriverController extends Controller
             'email' => 'required|unique:drivers,email',
         ]);
         $password = Random::generate(8);
-
+        session()->flash('password', $password);
         $driver = new Driver();
         $driver->first_name = $request->firstName;
         $driver->last_name = $request->lastName;
         $driver->email = $request->email;
-        $driver->password = $password;
+        $driver->password = bcrypt($password);
         // if ($request->hasFile('image_url')) {
         //     $path = $request->file('image_url')->store('images/drivers', 'public');
         // } else {
@@ -60,6 +60,12 @@ class DriverController extends Controller
         $driver->image_path = $imageURL;
         $driver->save();
 
+        return redirect()->route('drivers.confirm', ['driver' => $driver,]);
+    }
+
+    public function confirm(Driver $driver)
+    {
+        $password = session()->get('password');
         return view('drivers.confirm', ['driver' => $driver, 'password' => $password]);
     }
 
