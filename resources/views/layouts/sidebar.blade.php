@@ -59,7 +59,7 @@
                     </li>
 
                     <li>
-                        <a href="{{ route('student.index') }}"
+                        <a href="{{ route('students.index') }}"
                             class="group relative flex justify-center rounded px-2 py-1.5 text-gray-500 hover:bg-gray-50 hover:text-gray-700">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                 class="bi bi-person-vcard fill-gray-400" viewBox="0 0 16 16">

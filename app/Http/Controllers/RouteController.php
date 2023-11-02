@@ -30,8 +30,10 @@ class RouteController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request, Driver $driver)
+    public function store(Request $request,  $driverId)
     {
+        dd($request->all(), $driverId);
+        $driver = Driver::find($driverId);
         $students_id = $request->input('students_id');
         $students_id_array = explode(',', $students_id);
         $students = [];
@@ -65,12 +67,26 @@ class RouteController extends Controller
         return view('routes.show', ['route' => $route, 'driver' => $driver, 'students' => $route->students]);
     }
 
-    public function updateStudent(Route $route, Driver $driver, Student $students, Request $request)
+    public function updateStudent(Request $request,  $driver)
     {
+        $driver = Driver::find($driver);
         $route = Route::where('driver_id', $driver->id)->first();
         $students_id = $request->input('students_id');
-        $students = $route->students;
-        return view('routes.show', ['route' => $route, 'driver' => $driver, 'students' => $students]);
+        $students_id_array = explode(',', $students_id);
+        $students = [];
+        $lastStudent = $route->students()->latest('order')->first();
+        $order = $lastStudent ? $lastStudent->order + 1 : 1;
+        foreach ($students_id_array as $student_id) {
+            $student = Student::find($student_id);
+            $students[] = $student;
+
+            // Set the route_id on the student
+            $student->route_id = $route->id;
+            $student->order = $order;
+            $student->save();
+            $order++;
+        }
+        return view('routes.show', ['route' => $route, 'driver' => $driver, 'students' => $route->students]);
     }
 
     /**
@@ -120,8 +136,15 @@ class RouteController extends Controller
     public function addStudent(Route $route, Driver $driver)
     {
         $students = Student::has('address')->doesntHave('route')->get();
-        $driver = Driver::find($driver->id);
         return view('routes.add-student', ['route' => $route, 'driver' => $driver, 'students' => $students]);
+    }
+
+    public function removeStudent(Student $student)
+    {
+        $student->route_id = null;
+        $student->order = null;
+        $student->save();
+        return redirect()->back();
     }
 
     /**

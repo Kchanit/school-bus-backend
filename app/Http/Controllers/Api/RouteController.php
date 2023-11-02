@@ -144,13 +144,7 @@ class RouteController extends Controller
     //     return redirect()->route('routes.show', ['route' => $route, 'driver' => $driver, 'students' => $students]);
     // }
 
-    public function removeStudent(Student $student)
-    {
-        $student->route_id = null;
-        $student->order = null;
-        $student->save();
-        return redirect()->back();
-    }
+   
 
     /**
      * Remove the specified resource from storage.
