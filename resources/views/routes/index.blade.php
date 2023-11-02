@@ -10,17 +10,17 @@
                 </div>
                 <ul class="divide-y divide-gray-200">
                     {{-- @if (count($routes) > 0) --}}
-                    @foreach ($drivers as $driver)
-                        <a href="{{ route('routes.show', ['driver' => $driver]) }}" class="grid grid-cols-4">
+                    @foreach ($routes as $route)
+                        <a href="{{ route('routes.show', ['driver' => $route]) }}" class="grid grid-cols-4">
                             <li class="flex col-span-2 items-center py-4 px-6">
                                 <span class="text-gray-700 text-lg font-medium mr-4">{{ $loop->iteration . '.' }}</span>
                                 <img class="w-12 h-12 rounded-full object-cover mr-4"
                                     src="https://randomuser.me/api/portraits/women/72.jpg" alt="User avatar">
                                 <div class="flex-1">
                                     <h3 class="text-lg font-medium text-gray-800">
-                                        {{ $driver->first_name . ' ' . $driver->last_name }}
+                                        {{ ($route->driver->first_name ?? 'FirstName') . ' ' . ($route->driver->last_name ?? 'LastName') }}
                                     </h3>
-                                    <p class="text-gray-600 text-base">{{ $driver->email }}</p>
+                                    <p class="text-gray-600 text-base">{{ $route->driver->email ?? '' }}</p>
                                 </div>
                             </li>
                             <li class="flex items-center justify-center py-4 px-6">
@@ -29,7 +29,7 @@
                                         Route ID
                                     </h3>
                                     <p class="text-gray-600 text-center text-base">
-                                        {{ $driver->route->id ?? 'No Route' }}
+                                        {{ $route->id }}
                                     </p>
                                 </div>
                             </li>
@@ -39,7 +39,7 @@
                                         Students
                                     </h3>
                                     <p class="text-gray-600 text-center text-base">
-                                        {{ $driver->route->id ?? 'No Route' }}
+                                        {{ $route->students->count() }}
                                     </p>
                                 </div>
                             </li>
@@ -52,7 +52,7 @@
             </div>
             {{-- pagination --}}
             <div class="inline-flex self-center items-center justify-center gap-3">
-                <a href="{{ $drivers->previousPageUrl() }}"
+                <a href="{{ $routes->previousPageUrl() }}"
                     class="inline-flex h-8 w-8 items-center justify-center rounded border border-gray-100 bg-white text-gray-900 rtl:rotate-180">
                     <span class="sr-only">Next Page</span>
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" viewBox="0 0 20 20" fill="currentColor">
@@ -63,12 +63,12 @@
                 </a>
 
                 <p class="text-xs text-gray-900">
-                    {{ $drivers->currentPage() }}
+                    {{ $routes->currentPage() }}
                     <span class="mx-0.25">/</span>
-                    {{ $drivers->lastPage() }}
+                    {{ $routes->lastPage() }}
                 </p>
 
-                <a href="{{ $drivers->nextPageUrl() }}"
+                <a href="{{ $routes->nextPageUrl() }}"
                     class="inline-flex h-8 w-8 items-center justify-center rounded border border-gray-100 bg-white text-gray-900 rtl:rotate-180">
                     <span class="sr-only">Next Page</span>
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" viewBox="0 0 20 20" fill="currentColor">
