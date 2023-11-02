@@ -37,7 +37,7 @@
             {{-- pagination --}}
             <div class="inline-flex self-center items-center justify-center gap-3">
                 <a href="{{ $drivers->previousPageUrl() }}"
-                    class="inline-flex h-8 w-8 items-center justify-center rounded border border-gray-100 bg-white text-gray-900 rtl:rotate-180">
+                    class="inline-flex h-8 w-8 items-center justify-center rounded bg-white text-gray-900 rtl:rotate-180">
                     <span class="sr-only">Next Page</span>
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd"
@@ -53,7 +53,7 @@
                 </p>
 
                 <a href="{{ $drivers->nextPageUrl() }}"
-                    class="inline-flex h-8 w-8 items-center justify-center rounded border border-gray-100 bg-white text-gray-900 rtl:rotate-180">
+                    class="inline-flex h-8 w-8 items-center justify-center rounded bg-white text-gray-900 rtl:rotate-180">
                     <span class="sr-only">Next Page</span>
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd"

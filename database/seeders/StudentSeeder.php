@@ -17,28 +17,13 @@ class StudentSeeder extends Seeder
 
         $faker = \Faker\Factory::create();
 
-        for ($i = 1; $i <= 4; $i++) {
-            $student = new Student();
-            $student->first_name = $faker->firstName();
-            $student->last_name = $faker->lastName();
-            $student->parent_citizen_id = 1234567890100;
-            $student->parent_id = 1;
-            $student->joined = true;
-            $student->image_url = 'https://storage.googleapis.com/school-bus-bucket/kid1.jpg';
-            $student->save();
-
-            $address = Address::find($i);
-            $address->student_id = $i;
-            $address->save();
-        }
-
+        // Start Demo
         $student = new Student();
-        $student->first_name = 'Michael';
-        $student->last_name = 'Jackson';
-        $student->parent_citizen_id = '1234567890111';
-        $student->address_id = 5;
+        $student->first_name = "Michael";
+        $student->last_name = "Jackson";
+        $student->parent_citizen_id = 110050161001;
+        $student->parent_id = 1;
         $student->joined = true;
-        $student->image_url = 'https://storage.googleapis.com/school-bus-bucket/kid1.jpg';
         $student->save();
 
         $address = Address::find(1);
@@ -46,10 +31,10 @@ class StudentSeeder extends Seeder
         $address->save();
 
         $student = new Student();
-        $student->first_name = 'Micky';
-        $student->last_name = 'Jackson';
-        $student->parent_citizen_id = '1234567890111';
-        $student->address_id = 6;
+        $student->first_name = "Erling";
+        $student->last_name = "Haaland";
+        $student->parent_citizen_id = 110050161002;
+        $student->parent_id = 2;
         $student->joined = true;
         $student->save();
 
@@ -58,45 +43,51 @@ class StudentSeeder extends Seeder
         $address->save();
 
         $student = new Student();
-        $student->first_name = 'Jimmy';
-        $student->last_name = 'Carter';
+        $student->first_name = "Jimmy";
+        $student->last_name = "Carter";
+        $student->parent_citizen_id = 110050161003;
+        $student->parent_id = 3;
+        $student->joined = true;
+        $student->save();
+
+        $address = Address::find(3);
+        $address->student_id = 3;
+        $address->save();
+
+        $student = new Student();
+        $student->first_name = "Narun";
+        $student->last_name = "Nanthasen";
+        $student->parent_citizen_id = 110050161004;
+        $student->parent_id = 4;
+        $student->joined = true;
+        $student->save();
+
+        $address = Address::find(4);
+        $address->student_id = 4;
+        $address->save();
+        // End of Demo
+
+        // Present
+        $student = new Student();
+        $student->first_name = 'Alice';
+        $student->last_name = 'Chancharoen';
         $student->parent_citizen_id = '1234567890123';
-        $student->image_url = 'https://storage.googleapis.com/school-bus-bucket/kid1.jpg';
         $student->save();
 
         $student = new Student();
-        $student->first_name = 'Jane';
-        $student->last_name = 'Carter';
+        $student->first_name = 'Bob';
+        $student->last_name = 'Chancharoen';
         $student->parent_citizen_id = '1234567890123';
         $student->save();
-
-        for ($i = 1; $i <= 100; $i++) {
-            $student = new Student();
-            $student->first_name = $faker->firstName();
-            $student->last_name = $faker->lastName();
-            $student->parent_citizen_id = $faker->unique()->numerify('#############');
-            $student->save();
-        }
+        // End of Present
 
 
-
-        // $student = new Student();
-        // $student->first_name = 'Snoop';
-        // $student->last_name = 'Heehee';
-        // $student->parent_citizen_id = '1234567890126';
-        // $student->save();
-
-        // Student::factory()
-        //     ->count(100)
-        //     ->create();
-
-
-        // $i = 3;
-        // while ($i <= Student::count()) {
-        //     $student = Student::find($i);
-        //     $student->address_id = $i - 1;
+        // for ($i = 1; $i <= 100; $i++) {
+        //     $student = new Student();
+        //     $student->first_name = $faker->firstName();
+        //     $student->last_name = $faker->lastName();
+        //     $student->parent_citizen_id = $faker->unique()->numerify('#############');
         //     $student->save();
-        //     $i++;
         // }
     }
 }

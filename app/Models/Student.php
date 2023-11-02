@@ -4,10 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Kyslik\ColumnSortable\Sortable;
 
 class Student extends Model
 {
-    use HasFactory;
+    use HasFactory, Sortable;
+
+    public $sortable = ['id', 'first_name', 'last_name'];
+
 
     public function parent()
     {

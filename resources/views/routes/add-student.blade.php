@@ -1,14 +1,29 @@
 @extends('layouts.main')
 @section('content')
     <section>
-        <form method="POST" id="myForm" action="{{ route('routes.store', ['driver_id' => $driver->id]) }}">
+        <form method="POST" id="myForm"
+            action="{{ route('routes.update-student', ['route' => $route, 'driver' => $driver->id]) }}">
             @csrf
+            @method('PUT')
             {{-- table --}}
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-                <h1>Add page</h1>
-                <h1 class="text-2xl font-bold mb-7">Select students for {{ $driver->getFullName() }}</h1>
-                <button type="button" id="saveButton" class="btn btn-primary bg-green-500 p-2 rounded-lg">Save</button>
+            <div class="container mx-auto px-4  sm:px-6 lg:px-8 py-8">
+                <div class="flex justify-between">
+                    <h1 class="text-2xl font-bold mb-7">Add students for <span
+                            class="text-blue-600">{{ $driver->getFullName() }}</span></h1>
+                    <div>
+                        <button type="button" id="saveButton"
+                            class="btn btn-primary flex items-center text-sm  px-4 py-3 bg-green-500 hover:bg-green-700 p-2 rounded-lg text-white"><svg
+                                xmlns="http://www.w3.org/2000/svg" height="1em" class="fill-white mr-2"
+                                viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                                <path
+                                    d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V173.3c0-17-6.7-33.3-18.7-45.3L352 50.7C340 38.7 323.7 32 306.7 32H64zm0 96c0-17.7 14.3-32 32-32H288c17.7 0 32 14.3 32 32v64c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V128zM224 288a64 64 0 1 1 0 128 64 64 0 1 1 0-128z" />
+                            </svg>
+                            Save</button>
+
+                    </div>
+                </div>
                 <input type="hidden" name="students_id" id="selectedData" value="">
+
                 <table id="myTable" class="display">
                     <thead>
                         <tr>
@@ -41,7 +56,22 @@
         </form>
 
 
-        @include('common.script')
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <link
+            href="https://cdn.datatables.net/v/dt/jszip-3.10.1/dt-1.13.6/b-2.4.2/b-colvis-2.4.2/b-html5-2.4.2/b-print-2.4.2/r-2.5.0/sl-1.7.0/datatables.min.css"
+            rel="stylesheet">
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+        <script
+            src="https://cdn.datatables.net/v/dt/jszip-3.10.1/dt-1.13.6/b-2.4.2/b-colvis-2.4.2/b-html5-2.4.2/b-print-2.4.2/r-2.5.0/sl-1.7.0/datatables.min.js">
+        </script>
+
+        {{-- <script>
+            $(document).ready(function() {
+                $('#myTable').DataTable();
+            })
+        </script> --}}
 
         <script>
             $('#myTable tbody').on('click', 'tr', function() {
@@ -57,57 +87,25 @@
             }
 
             $(document).ready(function() {
-                var table = $('#myTable').DataTable({
+                let table = $('#myTable').DataTable({
                     dom: 'Bfrtip',
                     buttons: [
                         'selectAll',
                         'selectNone',
                         'showSelected',
-                        {
-                            text: 'Show Selected',
-                            action: function() {
-                                var rowdata = table.rows('.selected').data();
-                                var selectedData = [];
-
-                                var msg = '';
-                                for (var i = 0; i < rowdata.length; i++) {
-                                    msg += rowdata[i] + ","
-                                }
-                                message('[#]' + msg);
-
-                                for (var i = 0; i < rowdata.length; i++) {
-                                    selectedData.push(rowdata[i][0])
-                                }
-                                console.log(selectedData);
-
-
-                                $.ajax({
-                                    type: 'POST',
-                                    url: '{{ route('routes.store') }}',
-                                    // url: 'http:\/\/localhost/routes/create/1',
-                                    headers: {
-                                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr(
-                                            'content')
-                                    },
-                                    data: {
-                                        _token: '{{ csrf_token() }}',
-                                        "driver_id": {{ $driver->id }},
-                                        "students_id": selectedData,
-                                    },
-                                    success: function(response, status, xhr) {
-                                        console.log(response);
-                                    },
-                                    error: function(response) {
-                                        console.error('Request error with status:', response
-                                            .status);
-                                    },
-                                });
-
-                            }
-                        }
                     ],
+                    pagingType: 'simple',
                     select: {
                         style: 'multi'
+                    }
+                });
+
+                table.on('select', function(e, dt, type, ix) {
+                    var selected = dt.rows({
+                        selected: true
+                    });
+                    if (selected.count() > 5) {
+                        dt.rows(ix).deselect();
                     }
                 });
 

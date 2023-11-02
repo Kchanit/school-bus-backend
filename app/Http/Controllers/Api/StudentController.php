@@ -16,9 +16,6 @@ class StudentController extends Controller
      */
     public function index()
     {
-        // $students = Student::has('address')->get();
-        $students = Student::has('address')->paginate(10);
-        return view('student.index', ['students' => $students]);
     }
 
     /**
@@ -158,10 +155,5 @@ class StudentController extends Controller
         //
     }
 
-    public function remove($id)
-    {
-        $student = Student::find($id);
-        $student->delete();
-        return back();
-    }
+
 }

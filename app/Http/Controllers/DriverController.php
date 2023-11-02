@@ -14,8 +14,8 @@ class DriverController extends Controller
      */
     public function index()
     {
-        $drivers = Driver::with('route')->paginate(6);
-        return view('drivers.index', ['drivers' => $drivers]);
+        $drivers = Driver::with('route')->sortable()->paginate(8);
+        return view('drivers.list', ['drivers' => $drivers]);
     }
 
     /**
@@ -37,12 +37,12 @@ class DriverController extends Controller
             'email' => 'required|unique:drivers,email',
         ]);
         $password = Random::generate(8);
-
+        session()->flash('password', $password);
         $driver = new Driver();
         $driver->first_name = $request->firstName;
         $driver->last_name = $request->lastName;
         $driver->email = $request->email;
-        $driver->password = $password;
+        $driver->password = bcrypt($password);
         // if ($request->hasFile('image_url')) {
         //     $path = $request->file('image_url')->store('images/drivers', 'public');
         // } else {
@@ -60,12 +60,18 @@ class DriverController extends Controller
         $driver->image_path = $imageURL;
         $driver->save();
 
-        return redirect()->route('drivers.index');
+        return redirect()->route('drivers.confirm', ['driver' => $driver,]);
+    }
+
+    public function confirm(Driver $driver)
+    {
+        $password = session()->get('password');
+        return view('drivers.confirm', ['driver' => $driver, 'password' => $password]);
     }
 
     public function list()
     {
-        $drivers = Driver::with('route')->paginate(10);
+        $drivers = Driver::with('route')->sortable()->paginate(8);
         return view('drivers.list', ['drivers' => $drivers]);
     }
 
@@ -96,15 +102,18 @@ class DriverController extends Controller
             'lastName' => 'required',
         ]);
 
-        // $driver = Driver::find($request->id);
         $driver->first_name = $request->get('firstName');
         $driver->last_name = $request->get('lastName');
         $driver->save();
 
-        return redirect()->route('drivers.index');
+        return redirect()->route('drivers.list');
     }
 
-
+    public function destroy(Driver $driver)
+    {
+        $driver->delete();
+        return redirect()->route('drivers.list');
+    }
 
     /**
      * Remove the specified resource from storage.

@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Driver;
+use App\Models\Route;
 use App\Models\Staff;
+use App\Models\Student;
 use Illuminate\Http\Request;
 
 class StaffController extends Controller
@@ -13,7 +16,20 @@ class StaffController extends Controller
      */
     public function index()
     {
-        return view('staff.index');
+        $drivers = Driver::with('route')->get();
+        $students = Student::has('address')->get();
+        $routes = Route::get();
+        $avb_drivers = Driver::doesntHave('route')->get();
+        $route_stds = Student::has('address')->doesntHave('route')->get();
+        $all_students = Student::get();
+        return view('staff.index', [
+            'drivers' => $drivers,
+            'students' => $students,
+            'routes' => $routes,
+            'avb_drivers' => $avb_drivers,
+            'route_stds' => $route_stds,
+            'all_students' => $all_students,
+        ]);
     }
 
     /**
