@@ -40,8 +40,9 @@ Route::post('/logout', [StaffLoginController::class, 'logout'])->name('staff.log
 
 
 Route::get('/drivers/list', [DriverController::class, 'list'])->name('drivers.list');
-Route::get('delete/driver/{id}', [DriverController::class, 'remove'])->name('driver.remove');
+Route::delete('drivers/{driver}', [DriverController::class, 'destroy'])->name('driver.destroy');
 Route::get('edit/driver/{id}', [DriverController::class, 'edit'])->name('driver.edit');
+Route::put('drivers/update/{id}', [DriverController::class, 'update'])->name('driver.update');
 Route::resource('/drivers', DriverController::class);
 
 

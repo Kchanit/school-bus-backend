@@ -2,8 +2,9 @@
 @section('content')
     <section class="flex justify-center">
         <div class="flex flex-col w-1/2 ">
-            <form action="{{ route('drivers.update', ['driver' => $driver]) }}" method="PUT">
+            <form action="{{ route('drivers.update', ['driver' => $driver]) }}" method="POST">
                 @csrf
+                @method('PUT')
                 <h1 class="text-2xl font-bold text-center pt-10">
                     Edit Driver Information
                 </h1>
