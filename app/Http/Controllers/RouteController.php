@@ -64,6 +64,14 @@ class RouteController extends Controller
         return view('routes.show', ['route' => $route, 'driver' => $driver, 'students' => $route->students]);
     }
 
+    public function updateStudent(Route $route, Driver $driver, Student $students, Request $request)
+    {
+        $route = Route::where('driver_id', $driver->id)->first();
+        $students_id = $request->input('students_id');
+        $students = $route->students;
+        return view('routes.show', ['route' => $route, 'driver' => $driver, 'students' => $students]);
+    }
+
     /**
      * Display the specified resource.
      */

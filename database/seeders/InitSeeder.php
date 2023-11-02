@@ -17,16 +17,16 @@ class InitSeeder extends Seeder
     public function run(): void
     {
 
-        for ($i = 7; $i <= 20; $i++) {
-            $student = Student::where('id', '>', 6)->inRandomOrder()->first();
-            $student->address_id = $i;
-            $student->joined = true;
-            $student->save();
+        // for ($i = 7; $i <= 20; $i++) {
+        //     $student = Student::where('id', '>', 6)->inRandomOrder()->first();
+        //     $student->address_id = $i;
+        //     $student->joined = true;
+        //     $student->save();
 
-            $address = Address::find($i);
-            $address->student_id = $student->id;
-            $address->save();
-        }
+        //     $address = Address::find($i);
+        //     $address->student_id = $student->id;
+        //     $address->save();
+        // }
 
         $route = new Route();
         $route->driver_id = 1;
