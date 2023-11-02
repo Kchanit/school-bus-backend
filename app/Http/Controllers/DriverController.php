@@ -14,8 +14,8 @@ class DriverController extends Controller
      */
     public function index()
     {
-        $drivers = Driver::with('route')->paginate(6);
-        return view('drivers.index', ['drivers' => $drivers]);
+        $drivers = Driver::with('route')->sortable()->paginate(8);
+        return view('drivers.list', ['drivers' => $drivers]);
     }
 
     /**
@@ -60,7 +60,7 @@ class DriverController extends Controller
         $driver->image_path = $imageURL;
         $driver->save();
 
-        return redirect()->route('drivers.index');
+        return view('drivers.confirm', ['driver' => $driver, 'password' => $password]);
     }
 
     public function list()

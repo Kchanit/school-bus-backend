@@ -1,33 +1,33 @@
 @extends('layouts.main')
 @section('content')
-    <section class="flex justify-center">
-        <div class="flex flex-col justify-center w-1/2">
+    <section class="flex container justify-center mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div class="flex flex-col justify-center w-1/2 bg-white rounded-lg shadow-xl p-4">
             <form id="createDriverForm" action="{{ route('drivers.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
-                <h1 class="text-2xl font-bold text-center pt-10">
+                <h1 class="text-2xl font-bold text-start">
                     Create new driver
                 </h1>
-                <div class="space-y-2">
-                    <label for="firstName" class="inline-block text-sm font-medium text-gray-800 mt-4 dark:text-gray-200">
+                <div class="space-y-2 mt-6">
+                    <label for="firstName" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                         First Name
                     </label>
 
                     <input id="firstName" type="text" name="firstName" value="{{ old('firstName', '') }}"
-                        class="@error('firstName') border-red-400 @enderror py-2 px-3 pr-11 block w-full border-gray-200 shadow-sm rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400"
-                        placeholder="Enter driver first name">
+                        class="@error('firstName') border-red-400 @enderror bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                        placeholder="Enter driver first name" required>
                     @error('firstName')
                         <div class=" text-red-500 text-sm">
                             {{ $message }}
                         </div>
                     @enderror
                 </div>
-                <div class="space-y-2">
-                    <label for="lastName" class="inline-block text-sm font-medium text-gray-800 mt-4 dark:text-gray-200">
+                <div class="space-y-2 mt-4">
+                    <label for="lastName" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                         Last Name
                     </label>
 
                     <input id="lastName" type="text" name="lastName" value="{{ old('lastName', '') }}"
-                        class="@error('lastName') border-red-400 @enderror py-2 px-3 pr-11 block w-full border-gray-200 shadow-sm rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400"
+                        class="@error('lastName') border-red-400 @enderror bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                         placeholder="Enter driver last name">
                     @error('lastName')
                         <div class=" text-red-500 text-sm">
@@ -35,13 +35,13 @@
                         </div>
                     @enderror
                 </div>
-                <div class="space-y-2">
-                    <label for="email" class="inline-block text-sm font-medium text-gray-800 mt-4 dark:text-gray-200">
+                <div class="space-y-2 mt-4">
+                    <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                         Email
                     </label>
 
                     <input id="email" type="text" name="email" value="{{ old('email', '') }}"
-                        class="@error('email') border-red-400 @enderror py-2 px-3 pr-11 block w-full border-gray-200 shadow-sm rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400"
+                        class="@error('email') border-red-400 @enderror bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                         placeholder="Enter driver email">
                     @error('email')
                         <div class=" text-red-500 text-sm">
@@ -52,11 +52,11 @@
 
 
                 {{-- Profile Image --}}
-                <label for="image_url" class="inline-block text-sm font-medium text-gray-800 mt-4 dark:text-gray-200">
+                <label for="image_url" class="inline-block text-sm font-medium text-gray-800 mt-4">
                     Profile image
                 </label>
                 <label for="image_url"
-                    class="@error('image_url') border-red-400 @enderror group p-4 sm:p-7 block cursor-pointer text-center border-2 border-dashed border-gray-200 rounded-lg focus-within:outline-none focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-offset-2 dark:border-gray-700">
+                    class="@error('image_url') border-red-400 @enderror group p-4 mt-2 sm:p-7 block cursor-pointer text-center border-2 border-dashed border-gray-200 rounded-lg focus-within:outline-none focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-offset-2 dark:border-gray-700">
                     <input id="image_url" name="image_url" type="file" class="sr-only" accept="image/*"
                         onchange="document.getElementById('preview').src = window.URL.createObjectURL(this.files[0]); document.getElementById('preview').style.display = 'block'; document.getElementById('upload').style.display = 'none';">
                     <img id="preview" class="hidden max-h-[400px] mx-auto shadow-md rounded-lg">
@@ -129,6 +129,5 @@
         document.getElementById('confirmCreate').addEventListener('click', function() {
             document.getElementById('createDriverForm').submit();
         });
-
-</script>
+    </script>
 @endsection
