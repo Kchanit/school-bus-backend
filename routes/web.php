@@ -1,12 +1,11 @@
 <?php
 
-use App\Http\Controllers\Api\RouteController;
 use App\Http\Controllers\Api\StaffController;
 use App\Http\Controllers\Api\StudentController;
 use App\Http\Controllers\Auth\StaffLoginController;
 use App\Http\Controllers\DriverController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\RouteController as ControllersRouteController;
+use App\Http\Controllers\RouteController;
 use App\Models\Student;
 use Illuminate\Support\Facades\Route;
 
@@ -47,16 +46,14 @@ Route::put('drivers/update/{id}', [DriverController::class, 'update'])->name('dr
 Route::resource('/drivers', DriverController::class);
 
 
-// Route::get('/routes/add-student/{driver}', [RouteController::class, 'addStudent'])->name('routes.add-student');
-// Route::get('/routes/create/{driver}', [RouteController::class, 'create'])->name('routes.create');
-Route::post('/routes/create', [ControllersRouteController::class, 'create'])->name('routes.create');
+Route::get('routes/add-student', [RouteController::class, 'addStudent'])->name('routes.add-student');
+Route::get('/routes/create', [RouteController::class, 'create'])->name('routes.create');
 Route::get('/routes/show/{driver}', [RouteController::class, 'show'])->name('routes.show');
 Route::get('/routes/manage', [RouteController::class, 'manage'])->name('routes.manage');
-Route::get('/routes/index', [ControllersRouteController::class, 'index'])->name('routes.index');
+Route::get('/routes/index', [RouteController::class, 'index'])->name('routes.index');
 Route::post('routes/store', [RouteController::class, 'store'])->name('routes.store');
 Route::post('routes/update', [RouteController::class, 'update'])->name('routes.update');
 Route::get('routes/remove-student/{student}', [RouteController::class, 'removeStudent'])->name('routes.remove-student');
-// Route::resource('/routes', RouteController::class);
 
 
 // Route::get('/dashboard', function () {

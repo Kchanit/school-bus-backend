@@ -6,7 +6,7 @@
             {{-- table --}}
             <div class="container mx-auto px-4  sm:px-6 lg:px-8 py-8">
                 <div class="flex justify-between">
-                    <h1 class="text-2xl font-bold mb-7">Select students for <span class="text-blue-600"></span></h1>
+                    <h1 class="text-2xl font-bold mb-7">Add students for <span class="text-blue-600"></span></h1>
                     <div>
                         <button type="button" id="saveButton"
                             class="btn btn-primary flex items-center text-sm  px-4 py-3 bg-green-500 hover:bg-green-700 p-2 rounded-lg text-white"><svg

@@ -19,7 +19,7 @@
                             Save
                         </a>
                     </button>
-                    <a href="{{ route('routes.create', ['driver' => $driver]) }}"
+                    <a href="{{ route('routes.add-student', ['driver' => $driver]) }}"
                         class="flex items-center rounded-lg bg-blue-600/90 px-4 py-3 text-center text-xs font-medium text-white hover:bg-blue-700">
                         <svg xmlns="http://www.w3.org/2000/svg" height="1em" class="fill-white mr-2"
                             viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
