@@ -14,6 +14,7 @@ class AddressSeeder extends Seeder
      */
     public function run(): void
     {
+        // Mock Data
         $address = new Address();
         $address->home_address = '50 Chuchat Kamphu Alley, Khet Chatuchak, Krung Thep Maha Nakhon 10900';
         $address->home_latitude = 13.84765564295131;
@@ -45,6 +46,7 @@ class AddressSeeder extends Seeder
         $address->district = 'Khet Chatuchak';
         $address->road = '1468 Phahon Yothin Rd';
         $address->save();
+        // End Mock Data
 
         $address = new Address();
         $address->home_address = '123/456 หมู่ 7 ตำบล ท่าข้าม อำเภอ สามพราน จังหวัด นครปฐม 10180';
