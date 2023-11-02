@@ -31,7 +31,8 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/login', [StaffLoginController::class, 'showLoginForm'])->name('staff.showLoginForm');
 
 Route::get('/student', [StudentController::class, 'index'])->name('student.index');
-Route::get('delete/student/{id}', [StudentController::class, 'remove'])->name('student.remove');
+Route::post('student/{student}', [StudentController::class, 'remove'])->name('student.remove');
+
 
 Route::get('/', [StaffController::class, 'index'])->name('staff.index');
 Route::post('/staff-login', [StaffLoginController::class, 'login'])->name('staff.login');

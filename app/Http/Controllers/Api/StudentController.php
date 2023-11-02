@@ -151,10 +151,11 @@ class StudentController extends Controller
         //
     }
 
-    public function remove($id)
+    public function remove(Student $student)
     {
-        $student = Student::find($id);
-        $student->delete();
-        return back();
+        $student = Student::find($student->id);
+        $student->joined = false;
+        $student->save();
+        return redirect()->route('student.index');
     }
 }
