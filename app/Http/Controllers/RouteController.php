@@ -79,6 +79,7 @@ class RouteController extends Controller
     public function show(Route $route, Driver $driver)
     {
         $route = Route::where('driver_id', $driver->id)->first();
+
         if (!$route) {
             return redirect()->route('routes.create', ['driver' => $driver]);
         }
@@ -97,26 +98,24 @@ class RouteController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Driver $driver)
+    public function update(Request $request, Route $route, Driver $driver)
     {
         $driver_id = $request->input('driver_id');
         $driver = Driver::find($driver_id);
-        $route = Route::where('driver_id', $driver->id)->first();
         $students_id = $request->input('students_id');
         $students_id_array = explode(',', $students_id);
         $students = [];
 
-        // Associate students with the route
         foreach ($students_id_array as $index => $student_id) {
             $student = Student::find($student_id);
             $students[] = $student;
             $student->order = $index + 1;
             $student->save();
         }
-
-        // Redirect to the route's show page
         return redirect()->route('routes.show', ['route' => $route, 'driver' => $driver, 'students' => $students]);
     }
+
+
 
     public function addStudent(Route $route, Driver $driver)
     {

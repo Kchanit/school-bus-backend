@@ -9,7 +9,7 @@
                 <h1 class="text-2xl font-bold">Reorder route for {{ $driver->getFullName() }}</h1>
                 <div class="flex gap-2">
                     <button type="button" id="saveButton">
-                        <a href=""
+                        <a
                             class="flex items-center rounded-lg bg-green-500 px-4 py-3 text-center text-xs font-medium text-white hover:bg-green-700">
                             <svg xmlns="http://www.w3.org/2000/svg" height="1.5em" class="fill-white mr-2"
                                 viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
@@ -72,6 +72,7 @@
     @include('common.script')
     <script>
         $(document).ready(function() {
+            var selectedData = [];
             $('#showTable').DataTable({
                 rowReorder: {
                     selector: 'tr',

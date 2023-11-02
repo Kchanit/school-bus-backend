@@ -54,7 +54,7 @@ Route::get('/routes/show/{driver}', [RouteController::class, 'show'])->name('rou
 Route::get('/routes/manage', [RouteController::class, 'manage'])->name('routes.manage');
 Route::get('/routes/index', [RouteController::class, 'index'])->name('routes.index');
 Route::post('routes/store', [RouteController::class, 'store'])->name('routes.store');
-Route::post('routes/update', [RouteController::class, 'update'])->name('routes.update');
+Route::put('/routes/update', [RouteController::class, 'update'])->name('routes.update');
 Route::get('routes/remove-student/{student}', [RouteController::class, 'removeStudent'])->name('routes.remove-student');
 
 
