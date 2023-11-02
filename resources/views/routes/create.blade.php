@@ -6,7 +6,16 @@
             {{-- table --}}
             <div class="container mx-auto px-4  sm:px-6 lg:px-8 py-8">
                 <div class="flex justify-between">
-                    <h1 class="text-2xl font-bold mb-7">Select students for <span class="text-blue-600"></span></h1>
+                    <div class="mb-8 w-96">
+                        <label for="countries" class="block mb-2 text-sm font-medium text-gray-700 dark:text-white">Select a
+                            driver <span class="text-red-600">*</span></label>
+                        <select id="countries"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            @foreach ($drivers as $driver)
+                                <option selected>{{ $driver->getFullName() }}</option>
+                            @endforeach
+                        </select>
+                    </div>
                     <div>
                         <button type="button" id="saveButton"
                             class="btn btn-primary flex items-center text-sm  px-4 py-3 bg-green-500 hover:bg-green-700 p-2 rounded-lg text-white"><svg
@@ -19,18 +28,7 @@
 
                     </div>
                 </div>
-                <div class="mb-8">
-                    <label for="countries_disabled"
-                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select an option</label>
-                    <select disabled id="countries_disabled"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                        <option selected>Choose a country</option>
-                        <option value="US">United States</option>
-                        <option value="CA">Canada</option>
-                        <option value="FR">France</option>
-                        <option value="DE">Germany</option>
-                    </select>
-                </div>
+
                 <input type="hidden" name="students_id" id="selectedData" value="">
 
                 <table id="myTable" class="display">
@@ -99,7 +97,6 @@
                 let table = $('#myTable').DataTable({
                     dom: 'Bfrtip',
                     buttons: [
-                        'selectAll',
                         'selectNone',
                         'showSelected',
                     ],

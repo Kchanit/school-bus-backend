@@ -24,7 +24,8 @@ class RouteController extends Controller
     public function create()
     {
         $students = Student::has('address')->doesntHave('route')->get();
-        return view('routes.create', ['students' => $students]);
+        $drivers = Driver::get();
+        return view('routes.create', ['students' => $students, 'drivers' => $drivers]);
     }
     /**
      * Store a newly created resource in storage.

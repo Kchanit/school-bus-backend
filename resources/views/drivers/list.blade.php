@@ -85,13 +85,6 @@
 
                             {{-- Road --}}
                             <td class="flex justify-center py-2">
-                                {{-- <form method="POST" action="{{ route('student.remove', [$student->id]) }}">
-                                @csrf
-                                <input name="_method" type="hidden" value="DELETE">
-                                <button type="submit"
-                                    class="inline-block rounded bg-red-600/90 px-4 py-2 text-xs font-medium text-white hover:bg-red-700">Delete</button>
-                            </form> --}}
-                                {{-- <a href="{{ url('delete/' . $student->id) }}" --}}
                                 <a href="{{ url('edit/driver/' . $driver->id) }}"
                                     class="inline-block rounded px-4 py-2 text-xs font-medium text-blue-600 hover:underline">Edit</a>
                                 <button data-modal-target="popup-modal-{{ $driver->id }}"
