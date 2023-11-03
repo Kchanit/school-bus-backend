@@ -2,8 +2,8 @@
 @section('content')
     <section>
         <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-            <h1 class="text-2xl font-bold mb-2">Reports List</h1>
-            <h1 class="text-sm text-gray-700 mb-7">รายการแสดงย้อนหลังสูงสุด 30 วัน*</h1>
+            <h1 class="text-2xl font-bold mb-7">Reports List
+            </h1>
 
             <div class="overflow-x-auto shadow-md rounded-xl">
                 <table class="min-w-full text-left divide-y-2 divide-gray-200 bg-white text-md">
