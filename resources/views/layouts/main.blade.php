@@ -9,13 +9,14 @@
     <title>School Bus</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.css" rel="stylesheet" />
+
 </head>
 
 
 <body>
     <main class="inline-flex bg-slate-50 gap-4 content w-full min-h-screen">
         @include('layouts.sidebar')
-        <div class="py-3 pr-4 w-full">
+        <div class="py-3 pr-4 w-full overflow-y-auto h-screen">
             @yield('content')
         </div>
     </main>
