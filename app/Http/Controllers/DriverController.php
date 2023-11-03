@@ -32,9 +32,9 @@ class DriverController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'firstName' => 'required',
-            'lastName' => 'required',
-            'email' => 'required|unique:drivers,email',
+            'firstName' => 'required|min:3',
+            'lastName' => 'required|min:3',
+            'email' => 'required|unique:drivers,email|email',
         ]);
         $password = Random::generate(8);
         session()->flash('password', $password);
@@ -100,6 +100,7 @@ class DriverController extends Controller
         $request->validate([
             'firstName' => 'required',
             'lastName' => 'required',
+            'email' => 'required|unique:drivers,email' . $driver->id,
         ]);
 
         $driver->first_name = $request->get('firstName');

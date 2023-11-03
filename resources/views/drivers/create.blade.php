@@ -100,17 +100,33 @@
     <!-- Main modal -->
     @include('components.modals')
     <script>
+        function validate() {
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const email = document.getElementById('email').value;
+
+            if (firstName == '' || lastName == '' || email == '') {
+                return false;
+            } else {
+                return true;
+            }
+        }
+
         function showConfirmationModal() {
             // Get the form data
             const firstName = document.getElementById('firstName').value;
             const lastName = document.getElementById('lastName').value;
             const email = document.getElementById('email').value;
 
+            if (firstName == '' || lastName == '' || email == '') {
+                alert('Please fill all the fields');
+                return;
+            }
+
             // Populate the modal content with the form data
             document.getElementById('modalFirstName').textContent = firstName;
             document.getElementById('modalLastName').textContent = lastName;
             document.getElementById('modalEmail').textContent = email;
-            // You can add more fields here
 
             // Show the modal
             // const modal = document.getElementById('staticModal');
