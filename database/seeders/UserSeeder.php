@@ -26,6 +26,7 @@ class UserSeeder extends Seeder
         $user->last_name = "Haaland";
         $user->email = "bh@gmail.com";
         $user->citizen_id = 110050161002;
+        $user->fbtoken = 'e4cFaHevQDKD3znVghehUI:APA91bFtQW6p0VpGIO3EGj9B8BXhmFCdCRaaa_xt5HOK9XyN_emCcXmQeudRCRhWEvxA8RnE0ry2P_I0O0lC00_Tfax89tlj9EB9KU6S5b-iPP9jS4gfwzJLnLLQY57BkjwH0N9gH3lE';
         $user->password = bcrypt('1234');
         $user->save();
 
@@ -34,6 +35,7 @@ class UserSeeder extends Seeder
         $user->last_name = "Carter";
         $user->email = "jc@gmail.com";
         $user->citizen_id = 110050161003;
+        $user->fbtoken = 'e4cFaHevQDKD3znVghehUI:APA91bFtQW6p0VpGIO3EGj9B8BXhmFCdCRaaa_xt5HOK9XyN_emCcXmQeudRCRhWEvxA8RnE0ry2P_I0O0lC00_Tfax89tlj9EB9KU6S5b-iPP9jS4gfwzJLnLLQY57BkjwH0N9gH3lE';
         $user->password = bcrypt('1234');
         $user->save();
 
@@ -42,6 +44,7 @@ class UserSeeder extends Seeder
         $user->last_name = "Nanthasen";
         $user->email = "gn@gmail.com";
         $user->citizen_id = 110050161004;
+        $user->fbtoken = 'e4cFaHevQDKD3znVghehUI:APA91bFtQW6p0VpGIO3EGj9B8BXhmFCdCRaaa_xt5HOK9XyN_emCcXmQeudRCRhWEvxA8RnE0ry2P_I0O0lC00_Tfax89tlj9EB9KU6S5b-iPP9jS4gfwzJLnLLQY57BkjwH0N9gH3lE';
         $user->password = bcrypt('1234');
         $user->save();
 

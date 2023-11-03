@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\AddressController;
 use App\Http\Controllers\Api\DriverController;
+use App\Http\Controllers\Api\ReportController;
 use App\Http\Controllers\Api\RouteController;
 use App\Http\Controllers\Api\StudentController;
 use App\Http\Controllers\Api\UserController as ApiUserController;
@@ -41,6 +42,9 @@ Route::get('/students/{parentId}/get-my-students', [StudentController::class, 'g
 Route::post('/students/enroll', [StudentController::class, 'enrollStudent']);
 Route::put('/students/{id}/change-bus-status', [StudentController::class, 'changeBusStatus']); //
 Route::put('/students/{id}/update-status', [StudentController::class, 'updateStatus']); //
+
+// ReportAPI
+Route::post('/reports/store', [ReportController::class, 'store']);
 
 // RouteAPI
 Route::get('/routes/{driverId}/get-my-route', [RouteController::class, 'getMyRoute']);
