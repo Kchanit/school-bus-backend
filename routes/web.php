@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\StaffController;
 use App\Http\Controllers\Auth\StaffLoginController;
 use App\Http\Controllers\DriverController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\RouteController;
 use App\Http\Controllers\StudentController;
 use App\Models\Student;
@@ -33,6 +34,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/students', [StudentController::class, 'index'])->name('students.index');
 Route::post('/students/{student}', [StudentController::class, 'remove'])->name('student.remove');
 Route::post('/students/{student}', [StudentController::class, 'reset'])->name('student.reset');
+
+Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
+Route::get('/reports/{route}', [ReportController::class, 'show'])->name('reports.show');
 
 
 Route::get('/', [StaffController::class, 'index'])->name('staff.index');
