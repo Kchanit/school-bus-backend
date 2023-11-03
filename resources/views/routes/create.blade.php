@@ -7,13 +7,14 @@
             <div class="container mx-auto px-4  sm:px-6 lg:px-8 py-8">
                 <div class="flex justify-between">
                     <div class="mb-8 w-96">
-                        <label for="countries" class="block mb-2 text-sm font-medium text-gray-700 dark:text-white">Select a
+                        <label for="drivers" class="block mb-2 text-sm font-medium text-gray-700 dark:text-white">Select a
                             driver <span class="text-red-600">*</span></label>
-                        <select id="countries"
+                        <select id="drivers"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             @foreach ($drivers as $driver)
-                                <option selected>{{ $driver->getFullName() }}</option>
+                                <option selected>{{ $driver->id . '. ' . $driver->getFullName() }}</option>
                             @endforeach
+                            <input type="hidden" name="driver_id" id="selectedDriver" value="">
                         </select>
                     </div>
                     <div>
@@ -122,6 +123,10 @@
                         selectedData.push(rowdata[i][0])
                     }
                     console.log(selectedData);
+                    var driverId = $('#drivers').val().split('.')[0];
+                    $('#selectedDriver').val(driverId);
+
+                    console.log($('#selectedDriver').val());
 
                     $('#selectedData').val(selectedData);
                     $('#myForm').submit();

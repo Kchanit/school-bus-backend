@@ -82,12 +82,12 @@ class StudentSeeder extends Seeder
         // End of Present
 
 
-        // for ($i = 1; $i <= 100; $i++) {
-        //     $student = new Student();
-        //     $student->first_name = $faker->firstName();
-        //     $student->last_name = $faker->lastName();
-        //     $student->parent_citizen_id = $faker->unique()->numerify('#############');
-        //     $student->save();
-        // }
+        for ($i = 1; $i <= 100; $i++) {
+            $student = new Student();
+            $student->first_name = $faker->firstName();
+            $student->last_name = $faker->lastName();
+            $student->parent_citizen_id = $faker->unique()->numerify('#############');
+            $student->save();
+        }
     }
 }

@@ -223,8 +223,8 @@ class AddressSeeder extends Seeder
             ],
         ];
 
-        // Address::factory()
-        //     ->count(20)
-        //     ->create();
+        Address::factory()
+            ->count(20)
+            ->create();
     }
 }

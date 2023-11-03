@@ -53,7 +53,7 @@ Route::get('/routes/create', [RouteController::class, 'create'])->name('routes.c
 Route::get('/routes/show/{driver}', [RouteController::class, 'show'])->name('routes.show');
 Route::get('/routes/manage', [RouteController::class, 'manage'])->name('routes.manage');
 Route::get('/routes/index', [RouteController::class, 'index'])->name('routes.index');
-Route::post('/routes/{route}/store/{driver}', [RouteController::class, 'store'])->name('routes.store');
+Route::post('/routes/store', [RouteController::class, 'store'])->name('routes.store');
 Route::put('/routes/update', [RouteController::class, 'update'])->name('routes.update');
 Route::put('/routes/{route}/update-student/{driver}', [RouteController::class, 'updateStudent'])->name('routes.update-student');
 Route::get('routes/remove-student/{student}', [RouteController::class, 'removeStudent'])->name('routes.remove-student');

@@ -30,9 +30,9 @@ class RouteController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request,  $driverId)
+    public function store(Request $request)
     {
-        dd($request->all(), $driverId);
+        $driverId = $request->input('driver_id');
         $driver = Driver::find($driverId);
         $students_id = $request->input('students_id');
         $students_id_array = explode(',', $students_id);

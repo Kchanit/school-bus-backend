@@ -51,6 +51,13 @@ class InitSeeder extends Seeder
             $student->save();
         }
 
+        $addresses = Address::doesntHave('student')->get();
+        foreach ($addresses as $address) {
+            $student = Student::all()->where('address_id', '=', null)->where('joined', true)->inRandomOrder()->first();
+            $student->address_id = $address->id;
+            $student->save();
+        }
+
         // for ($i = 1; $i <= 5; $i++) {
         //     $student = Student::where('id', '>', 6)->where('joined', true)->inRandomOrder()->first();
         //     $student->route_id = $route->id;
