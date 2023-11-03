@@ -18,4 +18,9 @@ class Report extends Model
     {
         return $this->hasMany(StudentReport::class);
     }
+
+    public function route()
+    {
+        return $this->belongsTo(Route::class);
+    }
 }

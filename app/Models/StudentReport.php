@@ -13,4 +13,9 @@ class StudentReport extends Model
     {
         return $this->belongsTo(Report::class);
     }
+
+    public function student()
+    {
+        return $this->belongsTo(Student::class);
+    }
 }

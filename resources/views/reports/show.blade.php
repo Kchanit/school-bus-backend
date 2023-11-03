@@ -1,7 +1,7 @@
 @extends('layouts.main')
 @section('content')
     <section class="flex flex-col container justify-center mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <a href="{{ route('reports.index') }}"
+        <a href="{{ report('reports.index') }}"
             class="flex items-center w-fit py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100  focus:z-10 focus:ring-4 focus:ring-gray-200">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                 class="bi bi-arrow-left mr-1 stroke-gray-800 hover:fill-blue-700" viewBox="0 0 16 16">
@@ -16,15 +16,15 @@
 
             <div class="flex justify-between px-4 mt-8">
                 <div>
-                    <h1>Report No. 1</h1>
-                    <h1>Start: 14:00</h1>
-                    <h1>Finished: 15:00</h1>
+                    <h1>Report No: {{ $report->id }}</h1>
+                    <h1>Start: {{ \Carbon\Carbon::parse($report->start_time)->format('H:i') }}</h1>
+                    <h1>Finished: {{ \Carbon\Carbon::parse($report->end_time)->format('H:i') }}</h1>
                 </div>
-                <h1>Date: 2022-12-14</h1>
+                <h1>Date: {{ $report->date }}</h1>
 
                 <div class="flex flex-col items-end">
-                    <h1 class="">Route No. {{ $route->id }}</h1>
-                    <h1>Driver: {{ $route->driver->getFullName() }}</h1>
+                    <h1 class="">Route No. {{ $report->id }}</h1>
+                    <h1>Driver: {{ $report->driver->getFullName() }}</h1>
                 </div>
             </div>
 
@@ -49,30 +49,35 @@
                     </thead>
 
                     <tbody class="divide-y divide-gray-200">
-                        {{-- @foreach ($routes as $route) --}}
-                        <tr class="odd:bg-gray-50 hover:bg-gray-50">
-                            <td class="whitespace-nowrap px-4 py-3 text-gray-700">1</td>
-                            <td class="whitespace-nowrap px-4 py-3 text-gray-700">NameNameNameNameNameName</td>
-                            <td class="whitespace-nowrap px-4 py-3 text-gray-700">
-                                AddressAddressAddressAddressAddressAddressAddressAddressAddressAddress
-                            </td>
-                            <td class="whitespace-nowrap px-4 py-3 text-gray-700">เวลาที่เสร็จ</td>
-                        </tr>
-                        {{-- @endforeach --}}
+                        @foreach ($studentReports as $studentReport)
+                            <tr class="odd:bg-gray-50 hover:bg-gray-50">
+                                <td class="whitespace-nowrap px-4 py-3 text-gray-700">{{ $studentReport->student->order }}
+                                </td>
+                                <td class="whitespace-nowrap px-4 py-3 text-gray-700">
+                                    {{ $studentReport->student->getFullName() }}</td>
+                                <td class="whitespace-nowrap px-4 py-3 text-gray-700">
+                                    {{ $studentReport->student->address->home_address }}
+                                </td>
+                                <td class="whitespace-nowrap px-4 py-3 text-gray-700">
+                                    {{ \Carbon\Carbon::parse($studentReport->end_time)->format('H:i') }}</td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
             <div class="flex justify-between px-4 mt-8">
                 <div>
-                    <h1>Total Students : 8 from 8</h1>
+                    <h1>Total Students :
+                        {{ $report->studentReports->count() . ' from ' . $report->driver->route->students->count() }}
+                    </h1>
                 </div>
 
                 <div class="flex flex-col items-end">
-                    <h1>Total Time: 60 mins</h1>
+                    <h1>Total Time: {{ $totalTime }} mins</h1>
                 </div>
             </div>
         </div>
-        
-        
+
+
     </section>
 @endsection

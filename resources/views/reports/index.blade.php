@@ -59,22 +59,23 @@
                     </thead>
 
                     <tbody class="divide-y divide-gray-200">
-                        @foreach ($routes as $route)
+                        @foreach ($reports as $report)
                             <tr class="odd:bg-gray-50 hover:bg-gray-50">
                                 {{-- no. --}}
-                                <td class="whitespace-nowrap px-4 py-3 text-gray-700">{{ $route->id }}</td>
+                                <td class="whitespace-nowrap px-4 py-3 text-gray-700">{{ $report->id }}</td>
                                 {{-- First name --}}
-                                <td class="whitespace-nowrap px-4 py-3 text-gray-700">วันที่</td>
+                                <td class="whitespace-nowrap px-4 py-3 text-gray-700">{{ $report->date }}</td>
                                 {{-- Last name --}}
-                                <td class="whitespace-nowrap px-4 py-3 text-gray-700">เวลาที่เสร็จ</td>
+                                <td class="whitespace-nowrap px-4 py-3 text-gray-700">{{ $report->end_time }}</td>
                                 {{-- District --}}
                                 <td class="whitespace-nowrap px-4 py-3 text-gray-700">
-                                    {{ $route->students->count() . '/' . $route->students->count() ?? 'No Student' }}</td>
+                                    {{ $report->studentReports->count() . '/' . $report->driver->route->students->count() ?? 'No Student' }}
+                                </td>
                                 {{-- Road --}}
-                                <td class="whitespace-nowrap px-4 py-3 text-gray-700">{{ $route->driver->getFullName() }}
+                                <td class="whitespace-nowrap px-4 py-3 text-gray-700">{{ $report->driver->getFullName() }}
                                 </td>
                                 <td class="flex justify-center pr-2 py-2">
-                                    <a href="{{ route('reports.show', ['route' => $route]) }}">
+                                    <a href="{{ route('reports.show', ['report' => $report]) }}">
                                         <button
                                             class="inline-block rounded px-4 py-2 text-xs font-medium text-blue-600 hover:underline">View
                                             Detail</button>
@@ -88,14 +89,14 @@
             <div class="flex justify-between items-center mt-6">
                 <!-- Help text -->
                 <span class="text-sm text-gray-700 dark:text-gray-400">
-                    Showing <span class="font-semibold text-gray-900">{{ $routes->currentPage() }}</span> to
-                    <span class="font-semibold text-gray-900">{{ $routes->perPage() }}</span> of <span
-                        class="font-semibold text-gray-900">{{ $routes->total() }}</span> Entries
+                    Showing <span class="font-semibold text-gray-900">{{ $reports->currentPage() }}</span> to
+                    <span class="font-semibold text-gray-900">{{ $reports->perPage() }}</span> of <span
+                        class="font-semibold text-gray-900">{{ $reports->total() }}</span> Entries
                 </span>
                 <!-- Buttons -->
                 <div class="inline-flex mt-2 mr-2 xs:mt-0">
                     <!-- Previous Button -->
-                    <a href="{{ $routes->previousPageUrl() }}"
+                    <a href="{{ $reports->previousPageUrl() }}"
                         class="flex items-center justify-center px-3 h-8 text-sm font-medium text-gray-500 bg-transparent rounded-lg hover:bg-gray-100 hover:text-gray-700">
                         <svg class="w-3.5 h-3.5 mr-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
                             viewBox="0 0 14 10">
@@ -106,7 +107,7 @@
                     </a>
 
                     <!-- Next Button -->
-                    <a href="{{ $routes->nextPageUrl() }}"
+                    <a href="{{ $reports->nextPageUrl() }}"
                         class="flex items-center justify-center px-3 h-8 ml-3 text-sm font-medium text-gray-500 bg-transparent rounded-md hover:bg-gray-100 hover:text-gray-700">
                         Next
                         <svg class="w-3.5 h-3.5 ml-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Report;
+use App\Models\Route;
 use App\Models\StudentReport;
 use Carbon\Carbon;
 use DateTime;
@@ -36,6 +37,7 @@ class ReportController extends Controller
         $start_time = new DateTime($request->input('start_time'));
         $end_time = new DateTime($request->input('end_time'));
 
+        $route = Route::where('driver_id', $request->input('driver_id'))->first();
         $report = new Report();
         $report->driver_id = $request->input('driver_id');
         $report->date = $date->format('Y/m/d');
@@ -57,7 +59,6 @@ class ReportController extends Controller
         return response()->json([
             'message' => 'Report created successfully',
             'report' => $report,
-            'students_report' => $report->studentReports,
         ], 200);
     }
 

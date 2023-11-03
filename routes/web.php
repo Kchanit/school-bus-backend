@@ -36,7 +36,7 @@ Route::post('/students/{student}', [StudentController::class, 'remove'])->name('
 Route::post('/students/{student}', [StudentController::class, 'reset'])->name('student.reset');
 
 Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
-Route::get('/reports/{route}', [ReportController::class, 'show'])->name('reports.show');
+Route::get('/reports/{report}', [ReportController::class, 'show'])->name('reports.show');
 
 
 Route::get('/', [StaffController::class, 'index'])->name('staff.index');
