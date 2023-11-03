@@ -100,7 +100,6 @@ class DriverController extends Controller
         $request->validate([
             'firstName' => 'required',
             'lastName' => 'required',
-            'email' => 'required|unique:drivers,email' . $driver->id,
         ]);
 
         $driver->first_name = $request->get('firstName');
