@@ -46,7 +46,7 @@ class StudentSeeder extends Seeder
         $student->first_name = "Jimmy";
         $student->last_name = "Carter";
         $student->parent_citizen_id = 110050161003;
-        $student->parent_id = 3;
+        $student->parent_id = 2;
         $student->joined = true;
         $student->save();
 
@@ -58,7 +58,7 @@ class StudentSeeder extends Seeder
         $student->first_name = "Narun";
         $student->last_name = "Nanthasen";
         $student->parent_citizen_id = 110050161004;
-        $student->parent_id = 4;
+        $student->parent_id = 2;
         $student->joined = true;
         $student->save();
 

@@ -16,7 +16,7 @@ class DriverSeeder extends Seeder
         $driver = new Driver();
         $driver->first_name = 'John';
         $driver->last_name = 'Doe';
-        $driver->email = 'johnny@gmail.com';
+        $driver->email = 'driver@gmail.com';
         $driver->password = bcrypt('1234');
         $driver->image_path = 'images/drivers/driver1.jpg';
         $driver->save();
