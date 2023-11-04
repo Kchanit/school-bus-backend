@@ -18,15 +18,18 @@
                         </select>
                     </div>
                     <div>
-                        <button type="button" id="saveButton"
-                            class="btn btn-primary flex items-center text-sm  px-4 py-3 bg-green-500 hover:bg-green-700 p-2 rounded-lg text-white"><svg
-                                xmlns="http://www.w3.org/2000/svg" height="1em" class="fill-white mr-2"
-                                viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
-                                <path
-                                    d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V173.3c0-17-6.7-33.3-18.7-45.3L352 50.7C340 38.7 323.7 32 306.7 32H64zm0 96c0-17.7 14.3-32 32-32H288c17.7 0 32 14.3 32 32v64c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V128zM224 288a64 64 0 1 1 0 128 64 64 0 1 1 0-128z" />
-                            </svg>
-                            Save</button>
-
+                        <div class="flex items-center gap-4">
+                            {{-- Error here --}}
+                            <div id="error-message" class="text-red-600"></div>
+                            <button type="button" id="saveButton"
+                                class="btn btn-primary flex items-center text-sm  px-4 py-3 bg-green-500 hover:bg-green-700 p-2 rounded-lg text-white"><svg
+                                    xmlns="http://www.w3.org/2000/svg" height="1em" class="fill-white mr-2"
+                                    viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                                    <path
+                                        d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V173.3c0-17-6.7-33.3-18.7-45.3L352 50.7C340 38.7 323.7 32 306.7 32H64zm0 96c0-17.7 14.3-32 32-32H288c17.7 0 32 14.3 32 32v64c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V128zM224 288a64 64 0 1 1 0 128 64 64 0 1 1 0-128z" />
+                                </svg>
+                                Save</button>
+                        </div>
                     </div>
                 </div>
 
@@ -122,10 +125,16 @@
                     for (var i = 0; i < rowdata.length; i++) {
                         selectedData.push(rowdata[i][0])
                     }
+
+                    if (selectedData.length === 0) {
+                        // No students selected, display an error message
+                        $('#error-message').text('Please select at least one student.');
+                        return;
+                    }
+
                     console.log(selectedData);
                     var driverId = $('#drivers').val().split('.')[0];
                     $('#selectedDriver').val(driverId);
-
                     console.log($('#selectedDriver').val());
 
                     $('#selectedData').val(selectedData);
