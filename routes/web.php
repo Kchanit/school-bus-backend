@@ -25,11 +25,11 @@ use Illuminate\Support\Facades\Route;
 //     // if (auth()->guard('staff')->check()) {
 //     //     return redirect()->route('staff.index');
 //     // }
-//     return view('staff.index');
+//     return route('');
 // });
 
 // Staff Login Routes
-// Route::get('/login', [StaffLoginController::class, 'showLoginForm'])->name('staff.showLoginForm');
+Route::get('/', [StaffLoginController::class, 'showLoginForm'])->name('staff.showLoginForm');
 
 Route::get('/students', [StudentController::class, 'index'])->name('students.index');
 Route::post('/students/{student}', [StudentController::class, 'remove'])->name('student.remove');
@@ -39,7 +39,7 @@ Route::get('/reports', [ReportController::class, 'index'])->name('reports.index'
 Route::get('/reports/{report}', [ReportController::class, 'show'])->name('reports.show');
 
 
-Route::get('/', [StaffController::class, 'index'])->name('staff.index');
+Route::get('/staff', [StaffController::class, 'index'])->name('staff.index');
 Route::post('/staff-login', [StaffLoginController::class, 'login'])->name('staff.login');
 Route::post('/logout', [StaffLoginController::class, 'logout'])->name('staff.logout');
 

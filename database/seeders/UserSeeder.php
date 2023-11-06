@@ -18,6 +18,7 @@ class UserSeeder extends Seeder
         $user->last_name = "Jackson";
         $user->email = "parent@gmail.com";
         $user->citizen_id = 110050161001;
+        $user->fbtoken = 'daxDobn3QS-7hC-9Ac5vkc:APA91bHWMIs_5EvDJBwfaee5x0c6SFpSn74zqFSxGJbRSrigOJroKykyQJblCTdwKeVuxs1KtS2eSwAH9PCkoN-ixZiK3p-wrJVRO8wV2vlNfNR_6oiaYcMhaAAliYhZffH05i02QEiS';
         $user->password = bcrypt('1234');
         $user->save();
 

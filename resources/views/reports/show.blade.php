@@ -1,7 +1,7 @@
 @extends('layouts.main')
 @section('content')
     <section class="flex flex-col container justify-center mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <a href="{{ report('reports.index') }}"
+        <a href="{{ route('reports.index') }}"
             class="flex items-center w-fit py-2.5 px-5 mr-2 mb-4 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100  focus:z-10 focus:ring-4 focus:ring-gray-200">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                 class="bi bi-arrow-left mr-1 stroke-gray-800 hover:fill-blue-700" viewBox="0 0 16 16">
